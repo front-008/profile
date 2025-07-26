@@ -1,0 +1,188 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Warm & Innovative Programming Company Design System 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 220 18% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 18% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 18% 20%;
+
+    /* Warm coral primary brand color */
+    --primary: 15 86% 63%;
+    --primary-foreground: 0 0% 100%;
+    --primary-soft: 15 86% 95%;
+
+    /* Soft blue secondary for trust and tech */
+    --secondary: 220 60% 96%;
+    --secondary-foreground: 220 18% 20%;
+
+    /* Muted backgrounds */
+    --muted: 220 15% 97%;
+    --muted-foreground: 220 9% 46%;
+
+    /* Purple accent for innovation */
+    --accent: 260 60% 96%;
+    --accent-foreground: 260 15% 25%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 15 86% 63%;
+
+    /* Brand gradients */
+    --gradient-warm: linear-gradient(135deg, hsl(15 86% 63%), hsl(35 90% 68%));
+    --gradient-tech: linear-gradient(135deg, hsl(220 80% 70%), hsl(260 70% 75%));
+    --gradient-hero: linear-gradient(135deg, hsl(15 86% 63%), hsl(260 70% 75%));
+    
+    /* Innovation colors */
+    --innovation-orange: 35 90% 68%;
+    --innovation-blue: 220 80% 70%;
+    --innovation-purple: 260 70% 75%;
+    --innovation-teal: 180 65% 65%;
+
+    /* Shadows with brand colors */
+    --shadow-warm: 0 10px 30px -10px hsl(15 86% 63% / 0.3);
+    --shadow-soft: 0 4px 20px -5px hsl(220 18% 20% / 0.1);
+    --shadow-glow: 0 0 40px hsl(15 86% 63% / 0.2);
+
+    /* Animation timings */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* Hero Button Variant */
+  .btn-hero {
+    @apply bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--innovation-orange))] 
+           text-primary-foreground px-8 py-4 rounded-full font-medium
+           shadow-[var(--shadow-warm)] hover:shadow-[var(--shadow-glow)]
+           transition-all duration-300 hover:scale-105 active:scale-95;
+  }
+
+  /* Code Element Animation */
+  .code-float {
+    @apply animate-[float_6s_ease-in-out_infinite];
+  }
+
+  /* Gradient Text */
+  .text-gradient {
+    @apply bg-gradient-to-r from-[hsl(var(--primary))] via-[hsl(var(--innovation-purple))] to-[hsl(var(--innovation-blue))]
+           bg-clip-text text-transparent;
+  }
+
+  /* Innovation Card */
+  .innovation-card {
+    @apply bg-card/50 backdrop-blur-sm border border-border/50 rounded-2xl p-6
+           shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-warm)]
+           transition-all duration-300 hover:-translate-y-1;
+  }
+
+  /* Floating Animation */
+  @keyframes float {
+    0%, 100% { 
+      transform: translateY(0px) rotate(0deg); 
+    }
+    25% { 
+      transform: translateY(-10px) rotate(1deg); 
+    }
+    50% { 
+      transform: translateY(-5px) rotate(-1deg); 
+    }
+    75% { 
+      transform: translateY(-15px) rotate(0.5deg); 
+    }
+  }
+
+  /* Pulse Glow Animation */
+  @keyframes pulse-glow {
+    0%, 100% { 
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.2); 
+    }
+    50% { 
+      box-shadow: 0 0 40px hsl(var(--primary) / 0.4); 
+    }
+  }
+
+  .pulse-glow {
+    @apply animate-[pulse-glow_3s_ease-in-out_infinite];
+  }
+}
