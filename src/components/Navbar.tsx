@@ -14,7 +14,7 @@ const Navbar = () => {
         >
             <div className="max-w-7xl mx-auto">
                 <motion.div
-                    className="backdrop-blur-md bg-black/20 border border-white/10 rounded-2xl px-6 py-4 shadow-2xl"
+                    className="backdrop-blur-md bg-black/20 border border-white/10 rounded-2xl px-6 py-4"
                     initial={{ scale: 0.9, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 0.6, delay: 0.2, ease: [0.68, -0.55, 0.265, 1.55] }}
@@ -48,7 +48,7 @@ const Navbar = () => {
                                 </button>
 
                                 {/* Products Dropdown */}
-                                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[700px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[700px] max-w-[calc(100vw-2rem)] min-w-[320px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-4">
                                     <div className="backdrop-blur-md bg-black/20 border border-white/10 rounded-xl p-6 shadow-2xl">
                                         <div className="grid grid-cols-2 gap-6">
                                             {/* Logistics Card */}
@@ -150,11 +150,11 @@ const Navbar = () => {
                                 </button>
 
                                 {/* Company Dropdown */}
-                                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[600px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[600px] max-w-[calc(100vw-2rem)] min-w-[320px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-4">
                                     <div className="backdrop-blur-md bg-black/20 border border-white/10 rounded-xl p-6 shadow-2xl">
                                         <div className="grid grid-cols-3 gap-6">
                                             {/* Our Story Card */}
-                                            <div className="relative group/card cursor-pointer">
+                                            <Link to="/our-story" className="relative group/card cursor-pointer">
                                                 <div className="aspect-[4/3] rounded-lg bg-gradient-to-br from-purple-900/50 to-blue-900/50 border border-purple-500/20 overflow-hidden relative">
                                                     <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-blue-600/20"></div>
                                                     <div className="absolute top-4 right-4">
@@ -172,7 +172,7 @@ const Navbar = () => {
                                                         <h3 className="text-white font-bold text-lg">OUR STORY</h3>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </Link>
 
                                             {/* Team Card */}
                                             <Link to="/team" className="relative group/card cursor-pointer">
@@ -221,9 +221,9 @@ const Navbar = () => {
                             </div>
 
                             <div className="relative group">
-                                <button className="text-white/90 hover:text-white transition-colors duration-200">
+                                <Link to="/newsroom" className="text-white/90 hover:text-white transition-colors duration-200">
                                     <span className="text-sm font-medium">NEWSROOM</span>
-                                </button>
+                                </Link>
                             </div>
                         </motion.div>
 
@@ -279,7 +279,7 @@ const Navbar = () => {
             <AnimatePresence>
                 {isMobileMenuOpen && (
                     <motion.div
-                        className="md:hidden fixed inset-x-4 top-20 z-40"
+                        className="md:hidden fixed left-4 right-4 top-20 z-40"
                         initial={{ opacity: 0, y: -20, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: -20, scale: 0.95 }}
@@ -341,12 +341,12 @@ const Navbar = () => {
                                 <div>
                                     <h3 className="text-white font-bold text-lg mb-4">COMPANY</h3>
                                     <div className="grid grid-cols-3 gap-3">
-                                        <div className="bg-gradient-to-br from-purple-900/30 to-blue-900/30 border border-purple-500/20 rounded-lg p-3 text-center">
+                                        <Link to="/our-story" className="bg-gradient-to-br from-purple-900/30 to-blue-900/30 border border-purple-500/20 rounded-lg p-3 text-center">
                                             <svg className="w-6 h-6 text-purple-400 mx-auto mb-2" fill="currentColor" viewBox="0 0 24 24">
                                                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v-.07zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
                                             </svg>
                                             <h4 className="text-white font-medium text-xs">OUR STORY</h4>
-                                        </div>
+                                        </Link>
 
                                         <Link to="/team" className="bg-gradient-to-br from-indigo-900/30 to-purple-900/30 border border-indigo-500/20 rounded-lg p-3 text-center">
                                             <svg className="w-6 h-6 text-indigo-400 mx-auto mb-2" fill="currentColor" viewBox="0 0 24 24">
@@ -366,7 +366,7 @@ const Navbar = () => {
 
                                 {/* Newsroom */}
                                 <div>
-                                    <button className="text-white font-bold text-lg">NEWSROOM</button>
+                                    <Link to="/newsroom" className="text-white font-bold text-lg">NEWSROOM</Link>
                                 </div>
 
                                 {/* Language and CTA */}

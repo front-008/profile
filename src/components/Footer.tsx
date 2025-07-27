@@ -1,8 +1,9 @@
 import { Heart, Code2, Github, Twitter, Linkedin, Mail } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { motion, Variants } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 export default function Footer() {
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -13,34 +14,26 @@ export default function Footer() {
     }
   }
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
+      y: 0
     }
   }
 
-  const socialVariants = {
+  const socialVariants: Variants = {
     hidden: { opacity: 0, scale: 0 },
     visible: {
       opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.4,
-        ease: "backOut"
-      }
+      scale: 1
     }
   }
 
   return (
-    <footer className="bg-gradient-to-t from-muted/50 to-background border-t border-border/50">
+    <footer className="bg-gradient-to-t from-gray-100 to-white border-t border-gray-200">
       <div className="container mx-auto px-6 py-16">
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-4 gap-8"
           initial="hidden"
           whileInView="visible"
@@ -48,45 +41,45 @@ export default function Footer() {
           variants={containerVariants}
         >
           {/* Brand */}
-          <motion.div className="space-y-4" variants={itemVariants}>
-            <motion.div 
+          <motion.div className="space-y-4" variants={itemVariants} transition={{ duration: 0.6 }}>
+            <motion.div
               className="flex items-center gap-2"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <motion.div 
-                className="p-2 rounded-xl bg-gradient-to-br from-primary to-innovation-orange"
+              <motion.div
+                className="p-2 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500"
                 initial={{ scale: 0, rotate: -180 }}
                 whileInView={{ scale: 1, rotate: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.2, duration: 0.6, ease: "backOut" }}
+                transition={{ delay: 0.2, duration: 0.6, ease: [0.68, -0.55, 0.265, 1.55] }}
                 whileHover={{ rotate: 360, transition: { duration: 0.6 } }}
               >
                 <Code2 className="w-6 h-6 text-white" />
               </motion.div>
-              <motion.span 
-                className="text-xl font-bold"
+              <motion.span
+                className="text-xl font-bold text-gray-900"
                 initial={{ opacity: 0, x: -10 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
-                InnovativeCode
+                ALMUSANID
               </motion.span>
             </motion.div>
-            <motion.p 
-              className="text-muted-foreground text-sm leading-relaxed"
+            <motion.p
+              className="text-gray-600 text-sm leading-relaxed"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.5 }}
             >
-              Crafting elegant software solutions with passion, creativity, and technical excellence. 
+              Crafting elegant software solutions with passion, creativity, and technical excellence.
               Where code meets heart.
             </motion.p>
-            <motion.div 
+            <motion.div
               className="flex gap-3"
               initial="hidden"
               whileInView="visible"
@@ -100,54 +93,58 @@ export default function Footer() {
                 }
               }}
             >
-              <motion.button 
-                className="p-2 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-colors"
+              <motion.button
+                className="p-2 rounded-full bg-gray-200 hover:bg-purple-500 hover:text-white transition-colors"
                 variants={socialVariants}
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
+                transition={{ duration: 0.4, ease: [0.68, -0.55, 0.265, 1.55] }}
               >
-                <Github className="w-4 h-4" />
+                <Github className="w-4 h-4 text-gray-700" />
               </motion.button>
-              <motion.button 
-                className="p-2 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-colors"
+              <motion.button
+                className="p-2 rounded-full bg-gray-200 hover:bg-purple-500 hover:text-white transition-colors"
                 variants={socialVariants}
                 whileHover={{ scale: 1.1, rotate: -5 }}
                 whileTap={{ scale: 0.9 }}
+                transition={{ duration: 0.4, ease: [0.68, -0.55, 0.265, 1.55] }}
               >
-                <Twitter className="w-4 h-4" />
+                <Twitter className="w-4 h-4 text-gray-700" />
               </motion.button>
-              <motion.button 
-                className="p-2 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-colors"
+              <motion.button
+                className="p-2 rounded-full bg-gray-200 hover:bg-purple-500 hover:text-white transition-colors"
                 variants={socialVariants}
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
+                transition={{ duration: 0.4, ease: [0.68, -0.55, 0.265, 1.55] }}
               >
-                <Linkedin className="w-4 h-4" />
+                <Linkedin className="w-4 h-4 text-gray-700" />
               </motion.button>
-              <motion.button 
-                className="p-2 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-colors"
+              <motion.button
+                className="p-2 rounded-full bg-gray-200 hover:bg-purple-500 hover:text-white transition-colors"
                 variants={socialVariants}
                 whileHover={{ scale: 1.1, rotate: -5 }}
                 whileTap={{ scale: 0.9 }}
+                transition={{ duration: 0.4, ease: [0.68, -0.55, 0.265, 1.55] }}
               >
-                <Mail className="w-4 h-4" />
+                <Mail className="w-4 h-4 text-gray-700" />
               </motion.button>
             </motion.div>
           </motion.div>
-          
-          {/* Services */}
-          <motion.div className="space-y-4" variants={itemVariants}>
-            <motion.h4 
-              className="font-semibold"
+
+          {/* Products */}
+          <motion.div className="space-y-4" variants={itemVariants} transition={{ duration: 0.6 }}>
+            <motion.h4
+              className="font-semibold text-gray-900"
               initial={{ opacity: 0, y: -10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              Services
+              Products
             </motion.h4>
-            <motion.ul 
-              className="space-y-2 text-sm text-muted-foreground"
+            <motion.ul
+              className="space-y-2 text-sm text-gray-600"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
@@ -160,30 +157,37 @@ export default function Footer() {
                 }
               }}
             >
-              {['Web Development', 'Mobile Apps', 'Cloud Solutions', 'UI/UX Design', 'Consulting'].map((service, index) => (
-                <motion.li 
-                  key={service}
+              {[
+                { name: 'Logistics', desc: 'Supply chain management' },
+                { name: 'ERP', desc: 'Enterprise resource planning' },
+                { name: 'E-commerce', desc: 'Online retail platform' },
+                { name: 'POS', desc: 'Point of sale system' }
+              ].map((product, index) => (
+                <motion.li
+                  key={product.name}
                   variants={{
                     hidden: { opacity: 0, x: -10 },
-                    visible: { opacity: 1, x: 0, transition: { duration: 0.4 } }
+                    visible: { opacity: 1, x: 0 }
                   }}
+                  transition={{ duration: 0.4 }}
                 >
-                  <motion.a 
-                    href="#" 
-                    className="hover:text-primary transition-colors"
+                  <motion.a
+                    href="#"
+                    className="hover:text-purple-600 transition-colors block"
                     whileHover={{ x: 5, transition: { duration: 0.2 } }}
                   >
-                    {service}
+                    <span className="font-medium">{product.name}</span>
+                    <span className="block text-xs text-gray-500">{product.desc}</span>
                   </motion.a>
                 </motion.li>
               ))}
             </motion.ul>
           </motion.div>
-          
+
           {/* Company */}
-          <motion.div className="space-y-4" variants={itemVariants}>
-            <motion.h4 
-              className="font-semibold"
+          <motion.div className="space-y-4" variants={itemVariants} transition={{ duration: 0.6 }}>
+            <motion.h4
+              className="font-semibold text-gray-900"
               initial={{ opacity: 0, y: -10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -191,8 +195,8 @@ export default function Footer() {
             >
               Company
             </motion.h4>
-            <motion.ul 
-              className="space-y-2 text-sm text-muted-foreground"
+            <motion.ul
+              className="space-y-2 text-sm text-gray-600"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
@@ -205,30 +209,37 @@ export default function Footer() {
                 }
               }}
             >
-              {['About Us', 'Our Team', 'Careers', 'Blog', 'Press'].map((item, index) => (
-                <motion.li 
-                  key={item}
+              {[
+                { name: 'Our Story', path: '/our-story' },
+                { name: 'Team', path: '/team' },
+                { name: 'Jobs', path: '/jobs' },
+                { name: 'Newsroom', path: '/newsroom' }
+              ].map((item, index) => (
+                <motion.li
+                  key={item.name}
                   variants={{
                     hidden: { opacity: 0, x: -10 },
-                    visible: { opacity: 1, x: 0, transition: { duration: 0.4 } }
+                    visible: { opacity: 1, x: 0 }
                   }}
+                  transition={{ duration: 0.4 }}
                 >
-                  <motion.a 
-                    href="#" 
-                    className="hover:text-primary transition-colors"
-                    whileHover={{ x: 5, transition: { duration: 0.2 } }}
-                  >
-                    {item}
-                  </motion.a>
+                  <Link to={item.path}>
+                    <motion.span
+                      className="hover:text-purple-600 transition-colors block"
+                      whileHover={{ x: 5, transition: { duration: 0.2 } }}
+                    >
+                      {item.name}
+                    </motion.span>
+                  </Link>
                 </motion.li>
               ))}
             </motion.ul>
           </motion.div>
-          
+
           {/* Contact */}
-          <motion.div className="space-y-4" variants={itemVariants}>
-            <motion.h4 
-              className="font-semibold"
+          <motion.div className="space-y-4" variants={itemVariants} transition={{ duration: 0.6 }}>
+            <motion.h4
+              className="font-semibold text-gray-900"
               initial={{ opacity: 0, y: -10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -236,8 +247,8 @@ export default function Footer() {
             >
               Contact
             </motion.h4>
-            <motion.ul 
-              className="space-y-2 text-sm text-muted-foreground"
+            <motion.ul
+              className="space-y-2 text-sm text-gray-600"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
@@ -250,13 +261,14 @@ export default function Footer() {
                 }
               }}
             >
-              {['hello@innovativecode.com', '+1 (555) 123-4567', 'San Francisco, CA'].map((contact, index) => (
-                <motion.li 
+              {['hello@almusanid.com', '+966 (11) 123-4567', 'Riyadh, Saudi Arabia'].map((contact, index) => (
+                <motion.li
                   key={contact}
                   variants={{
                     hidden: { opacity: 0, x: -10 },
-                    visible: { opacity: 1, x: 0, transition: { duration: 0.4 } }
+                    visible: { opacity: 1, x: 0 }
                   }}
+                  transition={{ duration: 0.4 }}
                 >
                   {contact}
                 </motion.li>
@@ -264,12 +276,13 @@ export default function Footer() {
               <motion.li
                 variants={{
                   hidden: { opacity: 0, x: -10 },
-                  visible: { opacity: 1, x: 0, transition: { duration: 0.4 } }
+                  visible: { opacity: 1, x: 0 }
                 }}
+                transition={{ duration: 0.4 }}
               >
-                <motion.a 
-                  href="#" 
-                  className="hover:text-primary transition-colors"
+                <motion.a
+                  href="#"
+                  className="hover:text-purple-600 transition-colors"
                   whileHover={{ x: 5, transition: { duration: 0.2 } }}
                 >
                   Schedule a Call
@@ -278,25 +291,25 @@ export default function Footer() {
             </motion.ul>
           </motion.div>
         </motion.div>
-        
-        <motion.div 
-          className="border-t border-border/50 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
+
+        <motion.div
+          className="border-t border-gray-200 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.8, duration: 0.6 }}
         >
-          <motion.p 
-            className="text-sm text-muted-foreground"
+          <motion.p
+            className="text-sm text-gray-600"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 1, duration: 0.5 }}
           >
-            © 2024 InnovativeCode. All rights reserved.
+            © 2025 Almusanid. All rights reserved.
           </motion.p>
-          <motion.div 
-            className="flex items-center gap-2 text-sm text-muted-foreground"
+          <motion.div
+            className="flex items-center gap-2 text-sm text-gray-600"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -304,22 +317,22 @@ export default function Footer() {
           >
             <span>Made with</span>
             <motion.div
-              animate={{ 
+              animate={{
                 scale: [1, 1.2, 1],
                 rotate: [0, 5, -5, 0]
               }}
-              transition={{ 
-                duration: 2, 
-                repeat: Infinity, 
-                ease: "easeInOut" 
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
               }}
             >
-              <Heart className="w-4 h-4 text-primary" />
+              <Heart className="w-4 h-4 text-purple-500" />
             </motion.div>
             <span>and cutting-edge tech</span>
           </motion.div>
         </motion.div>
       </div>
-    </footer>
+    </footer >
   )
 }
