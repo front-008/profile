@@ -1,5 +1,6 @@
 import { Monitor, Smartphone, Cloud, Database, Palette, Cog } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { motion } from 'framer-motion'
 
 const services = [
   {
@@ -47,68 +48,217 @@ const services = [
 ]
 
 export default function Services() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.1
+      }
+    }
+  }
+
+  const cardVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 60,
+      rotateX: -15
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      rotateX: 0,
+      transition: {
+        duration: 0.7,
+        ease: "easeOut"
+      }
+    }
+  }
+
+  const featureVariants = {
+    hidden: { opacity: 0, x: -10 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.4,
+        ease: "easeOut"
+      }
+    }
+  }
+
+  const titleVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }
+  }
+
   return (
     <section className="py-24 bg-gradient-to-b from-muted/30 to-background">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+        <motion.div 
+          className="text-center mb-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={titleVariants}
+        >
+          <motion.h2 
+            className="text-4xl md:text-5xl font-bold mb-6"
+            variants={titleVariants}
+          >
             Comprehensive
             <span className="text-gradient"> Tech Solutions</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          </motion.h2>
+          <motion.p 
+            className="text-xl text-muted-foreground max-w-3xl mx-auto"
+            variants={titleVariants}
+            transition={{ delay: 0.2 }}
+          >
             From concept to deployment, we offer full-stack development services 
             that bring your digital vision to life with elegance and precision.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={containerVariants}
+        >
           {services.map((service, index) => {
             const Icon = service.icon
             return (
-              <div
+              <motion.div
                 key={index}
                 className="innovation-card group"
-                style={{ animationDelay: `${index * 150}ms` }}
+                variants={cardVariants}
+                whileHover={{ 
+                  scale: 1.05, 
+                  y: -15,
+                  rotateY: 5,
+                  transition: { duration: 0.3, ease: "easeOut" }
+                }}
+                whileTap={{ scale: 0.95 }}
               >
-                <div 
+                <motion.div 
                   className="inline-flex p-4 rounded-2xl mb-6 pulse-glow"
                   style={{ backgroundColor: `${service.color}15`, color: service.color }}
+                  initial={{ scale: 0, rotate: -180 }}
+                  whileInView={{ scale: 1, rotate: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    delay: index * 0.1 + 0.3, 
+                    duration: 0.6, 
+                    ease: "backOut" 
+                  }}
+                  whileHover={{ 
+                    rotate: 360,
+                    scale: 1.1,
+                    transition: { duration: 0.6, ease: "easeInOut" }
+                  }}
                 >
                   <Icon className="w-8 h-8" />
-                </div>
+                </motion.div>
                 
-                <h3 className="text-2xl font-semibold mb-3 group-hover:text-primary transition-colors">
+                <motion.h3 
+                  className="text-2xl font-semibold mb-3 group-hover:text-primary transition-colors"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 + 0.4, duration: 0.5 }}
+                >
                   {service.title}
-                </h3>
+                </motion.h3>
                 
-                <p className="text-muted-foreground mb-6 leading-relaxed">
+                <motion.p 
+                  className="text-muted-foreground mb-6 leading-relaxed"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 + 0.5, duration: 0.5 }}
+                >
                   {service.description}
-                </p>
+                </motion.p>
                 
-                <ul className="space-y-2">
+                <motion.ul 
+                  className="space-y-2"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={{
+                    visible: {
+                      transition: {
+                        staggerChildren: 0.1,
+                        delayChildren: index * 0.1 + 0.6
+                      }
+                    }
+                  }}
+                >
                   {service.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center text-sm text-foreground/80">
-                      <div 
+                    <motion.li 
+                      key={featureIndex} 
+                      className="flex items-center text-sm text-foreground/80"
+                      variants={featureVariants}
+                    >
+                      <motion.div 
                         className="w-1.5 h-1.5 rounded-full mr-3"
                         style={{ backgroundColor: service.color }}
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ 
+                          delay: index * 0.1 + featureIndex * 0.05 + 0.7,
+                          duration: 0.3,
+                          ease: "backOut"
+                        }}
                       />
                       {feature}
-                    </li>
+                    </motion.li>
                   ))}
-                </ul>
-              </div>
+                </motion.ul>
+              </motion.div>
             )
           })}
-        </div>
+        </motion.div>
         
-        <div className="text-center">
-          <p className="text-lg text-muted-foreground mb-6">
+        <motion.div 
+          className="text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <motion.p 
+            className="text-lg text-muted-foreground mb-6"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          >
             Need something custom? We love solving unique challenges.
-          </p>
-          <Button className="btn-hero">
-            Discuss Your Project
-          </Button>
-        </div>
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.5, ease: "backOut" }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Button className="btn-hero">
+              Discuss Your Project
+            </Button>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   )

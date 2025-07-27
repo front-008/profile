@@ -1,4 +1,5 @@
 import { Heart, Zap, Users, Target, Lightbulb, Shield } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 const values = [
   {
@@ -40,47 +41,141 @@ const values = [
 ]
 
 export default function Values() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1
+      }
+    }
+  }
+
+  const itemVariants = {
+    hidden: { 
+      opacity: 0, 
+      y: 50,
+      scale: 0.9
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  }
+
+  const titleVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }
+  }
+
+  const iconVariants = {
+    hidden: { scale: 0, rotate: -180 },
+    visible: {
+      scale: 1,
+      rotate: 0,
+      transition: {
+        duration: 0.6,
+        ease: "backOut"
+      }
+    }
+  }
+
   return (
     <section className="py-24 bg-gradient-to-b from-background to-muted/30">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+        <motion.div 
+          className="text-center mb-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={titleVariants}
+        >
+          <motion.h2 
+            className="text-4xl md:text-5xl font-bold mb-6"
+            variants={titleVariants}
+          >
             What Makes Us
             <span className="text-gradient"> Different</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          </motion.h2>
+          <motion.p 
+            className="text-xl text-muted-foreground max-w-3xl mx-auto"
+            variants={titleVariants}
+            transition={{ delay: 0.2 }}
+          >
             Our values aren't just words on a wall. They're the principles that guide every decision, 
             every line of code, and every client interaction.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={containerVariants}
+        >
           {values.map((value, index) => {
             const Icon = value.icon
             return (
-              <div
+              <motion.div
                 key={index}
-                className="innovation-card group hover:scale-105 transition-all duration-300"
-                style={{ animationDelay: `${index * 100}ms` }}
+                className="innovation-card group"
+                variants={itemVariants}
+                whileHover={{ 
+                  scale: 1.05, 
+                  y: -10,
+                  transition: { duration: 0.3, ease: "easeOut" }
+                }}
+                whileTap={{ scale: 0.95 }}
               >
-                <div 
+                <motion.div 
                   className="inline-flex p-3 rounded-xl mb-4 pulse-glow"
                   style={{ backgroundColor: `${value.color}20`, color: value.color }}
+                  variants={iconVariants}
+                  whileHover={{ 
+                    rotate: 360,
+                    transition: { duration: 0.6, ease: "easeInOut" }
+                  }}
                 >
                   <Icon className="w-6 h-6" />
-                </div>
+                </motion.div>
                 
-                <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
+                <motion.h3 
+                  className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 + 0.3, duration: 0.5 }}
+                >
                   {value.title}
-                </h3>
+                </motion.h3>
                 
-                <p className="text-muted-foreground leading-relaxed">
+                <motion.p 
+                  className="text-muted-foreground leading-relaxed"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 + 0.5, duration: 0.5 }}
+                >
                   {value.description}
-                </p>
-              </div>
+                </motion.p>
+              </motion.div>
             )
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   )
