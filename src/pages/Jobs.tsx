@@ -1,8 +1,14 @@
 import { MapPin, Clock, DollarSign, Users, Code, Database, Cloud, Smartphone } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import Navbar from '@/components/Navbar'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { useTranslation } from '@/hooks/useTranslation'
+import { motion } from 'framer-motion'
+import TranslationTest from '@/components/TranslationTest'
 
 const Jobs = () => {
+  const { isRTL } = useLanguage()
+  const { t } = useTranslation()
   const jobListings = [
     {
       id: 1,
@@ -99,31 +105,30 @@ const Jobs = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       <Navbar />
-      
+
       {/* Hero Section */}
       <div className="pt-32 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-              Join Our
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"> Team</span>
+              {t('jobs.title')}
+              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"> {t('jobs.titleHighlight')}</span>
             </h1>
             <p className="text-xl text-white/80 max-w-3xl mx-auto mb-8">
-              Build the future of enterprise software with cutting-edge technology. 
-              We're looking for passionate developers to join our mission of transforming business operations.
+              {t('jobs.subtitle')}
             </p>
-            <div className="flex flex-wrap justify-center gap-4 text-white/60">
-              <div className="flex items-center gap-2">
+            <div className={`flex flex-wrap justify-center gap-4 text-white/60 ${isRTL ? 'flex-row-reverse' : ''}`}>
+              <div className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
                 <Users className="w-5 h-5" />
-                <span>Remote-first culture</span>
+                <span>{t('jobs.culture.remote')}</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
                 <MapPin className="w-5 h-5" />
-                <span>Dubai headquarters</span>
+                <span>{t('jobs.culture.headquarters')}</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
                 <DollarSign className="w-5 h-5" />
-                <span>Competitive salaries</span>
+                <span>{t('jobs.culture.salaries')}</span>
               </div>
             </div>
           </div>
@@ -194,11 +199,11 @@ const Jobs = () => {
                   </div>
 
                   {/* Apply Button */}
-                  <Link 
+                  <Link
                     to={`/jobs/apply/${job.id}`}
                     className="block w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white py-3 rounded-xl font-medium transition-all duration-200 hover:shadow-lg hover:shadow-purple-500/25 text-center"
                   >
-                    Apply Now
+                    {t('jobs.applyNow')}
                   </Link>
                 </div>
               </div>
@@ -212,14 +217,13 @@ const Jobs = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="backdrop-blur-md bg-black/20 border border-white/10 rounded-2xl p-8 shadow-2xl">
             <h2 className="text-3xl font-bold text-white mb-4">
-              Don't see the perfect role?
+              {t('jobs.noRole.title')}
             </h2>
             <p className="text-white/70 mb-6">
-              We're always looking for talented individuals to join our team. 
-              Send us your resume and let us know how you'd like to contribute to our mission.
+              {t('jobs.noRole.description')}
             </p>
             <button className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-3 rounded-full font-medium transition-all duration-200 hover:shadow-lg hover:shadow-purple-500/25">
-              Send Your Resume
+              {t('jobs.sendResume')}
             </button>
           </div>
         </div>

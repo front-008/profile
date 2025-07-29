@@ -1,53 +1,68 @@
 import { Link } from 'react-router-dom'
 import { motion, Variants } from 'framer-motion'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { useTranslation } from '@/hooks/useTranslation'
+import { useRTLAnimations } from '@/hooks/useRTLAnimations'
 
-const teamMembers = [
+const getTeamMembers = (t: (key: string) => string) => [
   {
     id: 1,
-    name: "Dr. Mohammed Alsuwaidi",
-    title: "Chief Executive Officer",
+    name: t('team.members.mohammed.name'),
+    title: t('team.members.mohammed.title'),
     image: "/placeholder.svg"
   },
   {
     id: 2,
-    name: "Dr. Khalid Al-Dhaheri",
-    title: "Chief Technology Officer",
+    name: t('team.members.khalid.name'),
+    title: t('team.members.khalid.title'),
     image: "/placeholder.svg"
   },
   {
     id: 3,
-    name: "Abdullah Alazraq",
-    title: "Chief Operating Officer",
+    name: t('team.members.abdullah.name'),
+    title: t('team.members.abdullah.title'),
     image: "/placeholder.svg"
   },
   {
     id: 4,
-    name: "Majid Alsayegh",
-    title: "Head of Engineering",
+    name: t('team.members.majid.name'),
+    title: t('team.members.majid.title'),
     image: "/placeholder.svg"
   },
   {
     id: 5,
-    name: "Dr. Saif Al-Nuaimi",
-    title: "Head of Research",
+    name: t('team.members.saif.name'),
+    title: t('team.members.saif.title'),
     image: "/placeholder.svg"
   },
   {
     id: 6,
-    name: "Mohammed Alshamsi",
-    title: "Head of Product",
+    name: t('team.members.mohammed2.name'),
+    title: t('team.members.mohammed2.title'),
     image: "/placeholder.svg"
   }
 ]
 
 export default function Team() {
+  const { isRTL } = useLanguage()
+  const { t } = useTranslation()
+  const {
+    staggerContainerVariants,
+    textRevealVariants,
+    iconVariants,
+    cardHoverVariants
+  } = useRTLAnimations()
+
+  const teamMembers = getTeamMembers(t)
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
         staggerChildren: 0.2,
-        delayChildren: 0.1
+        delayChildren: 0.1,
+        staggerDirection: isRTL ? -1 : 1
       }
     }
   }
@@ -56,11 +71,13 @@ export default function Team() {
     hidden: {
       opacity: 0,
       y: 50,
+      x: isRTL ? 30 : -30,
       scale: 0.9
     },
     visible: {
       opacity: 1,
       y: 0,
+      x: 0,
       scale: 1,
       transition: {
         duration: 0.6,
@@ -70,10 +87,15 @@ export default function Team() {
   }
 
   const titleVariants: Variants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: {
+      opacity: 0,
+      y: 30,
+      x: isRTL ? 20 : -20
+    },
     visible: {
       opacity: 1,
       y: 0,
+      x: 0,
       transition: {
         duration: 0.8,
         ease: [0.25, 0.1, 0.25, 1]
@@ -107,10 +129,10 @@ export default function Team() {
             className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight"
             variants={titleVariants}
           >
-            THE PEOPLE BEHIND
+            {t('team.title')}
             <br />
             <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-              THE VISION
+              {t('team.titleHighlight')}
             </span>
           </motion.h2>
           <motion.div
@@ -125,13 +147,13 @@ export default function Team() {
             variants={titleVariants}
             transition={{ delay: 0.2 }}
           >
-            Meet our exceptional team of leaders and innovators who drive our mission forward
+            {t('team.subtitle')}
           </motion.p>
         </motion.div>
 
         {/* Team Grid - 3 members only */}
         <motion.div
-          className="grid md:grid-cols-3 gap-8 mb-12"
+          className="grid md:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12 mobile-team-rtl"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
@@ -172,7 +194,7 @@ export default function Team() {
                 </motion.div>
                 <motion.h3
                   className="text-gray-900 font-bold text-xl mb-2"
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 + 0.4, duration: 0.5 }}
@@ -181,7 +203,7 @@ export default function Team() {
                 </motion.h3>
                 <motion.p
                   className="text-gray-600 text-sm"
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 + 0.5, duration: 0.5 }}
@@ -191,7 +213,7 @@ export default function Team() {
 
                 {/* Social Links */}
                 <motion.div
-                  className="flex space-x-3 mt-4"
+                  className={`flex mt-4 ${isRTL ? 'space-x-reverse space-x-3' : 'space-x-3'}`}
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
@@ -199,7 +221,8 @@ export default function Team() {
                     visible: {
                       transition: {
                         staggerChildren: 0.1,
-                        delayChildren: index * 0.1 + 0.6
+                        delayChildren: index * 0.1 + 0.6,
+                        staggerDirection: isRTL ? -1 : 1
                       }
                     }
                   }}
@@ -257,10 +280,10 @@ export default function Team() {
               viewport={{ once: true }}
               transition={{ delay: 0.4, duration: 0.5 }}
             >
-              50+ AMAZING AND TALENTED
+              {t('team.cta.title')}
               <br />
               <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                MINDS
+                {t('team.cta.titleHighlight')}
               </span>
             </motion.h3>
             <motion.p
@@ -270,8 +293,7 @@ export default function Team() {
               viewport={{ once: true }}
               transition={{ delay: 0.6, duration: 0.5 }}
             >
-              Our diverse team of experts brings together decades of experience in technology,
-              business, and innovation to deliver exceptional solutions.
+              {t('team.cta.description')}
             </motion.p>
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center"
@@ -299,7 +321,7 @@ export default function Team() {
                   to="/team"
                   className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-3 rounded-full font-medium transition-all duration-200 hover:shadow-lg hover:shadow-purple-500/25 inline-block"
                 >
-                  Meet Our Full Team
+                  {t('team.cta.meetTeam')}
                 </Link>
               </motion.div>
               <motion.div
@@ -314,7 +336,7 @@ export default function Team() {
                   to="/jobs"
                   className="border border-purple-500/30 hover:border-purple-500 hover:bg-purple-50 text-purple-600 px-8 py-3 rounded-full font-medium transition-all duration-200 inline-block"
                 >
-                  Join Our Team
+                  {t('team.cta.joinTeam')}
                 </Link>
               </motion.div>
             </motion.div>

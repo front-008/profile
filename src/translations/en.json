@@ -1,0 +1,630 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Retry",
+    "close": "Close",
+    "save": "Save",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "clear": "Clear",
+    "join": "Join"
+  },
+  "navbar": {
+    "products": "Products",
+    "company": "Company",
+    "newsroom": "Newsroom",
+    "getInTouch": "Get in Touch",
+    "logistics": "Logistics",
+    "erp": "ERP",
+    "ecommerce": "E-commerce",
+    "pos": "POS",
+    "ourStory": "Our Story",
+    "team": "Team",
+    "jobs": "Jobs",
+    "news": "News",
+    "events": "Events",
+    "contact": "Contact",
+    "support": "Support",
+    "logisticsDescription": "Supply chain management",
+    "erpDescription": "Enterprise resource planning",
+    "ecommerceDescription": "Online retail platform",
+    "posDescription": "Point of sale system",
+    "logisticsShort": "Supply chain",
+    "erpShort": "Enterprise planning",
+    "ecommerceShort": "Online retail",
+    "posShort": "Point of sale",
+    "switchToEnglish": "Switch to English",
+    "switchToArabic": "Switch to Arabic"
+  },
+  "hero": {
+    "badge": "Where Code Meets Heart",
+    "title": {
+      "part1": "Crafting",
+      "part2": "Innovation",
+      "part3": "with",
+      "part4": "Passion"
+    },
+    "subtitle": "We're a modern programming company that combines cutting-edge technology with creativity and heart. Building elegant, scalable solutions that empower our clients and improve lives.",
+    "features": {
+      "technical": "Technical Excellence",
+      "design": "Human-Centered Design",
+      "collaboration": "Collaborative Spirit"
+    },
+    "cta": {
+      "primary": "Start Your Project",
+      "secondary": "View Our Work"
+    },
+    "learnMore": "Learn More",
+    "watchDemo": "Watch Demo"
+  },
+  "services": {
+    "title": "Comprehensive",
+    "titleHighlight": "Tech Solutions",
+    "subtitle": "From concept to deployment, we offer full-stack development services that bring your digital vision to life with elegance and precision.",
+    "customMessage": "Need something custom? We love solving unique challenges.",
+    "cta": "Discuss Your Project",
+    "webApps": {
+      "title": "Web Applications",
+      "description": "Modern, responsive web apps built with cutting-edge frameworks and technologies.",
+      "features": {
+        "react": "React & Next.js",
+        "typescript": "TypeScript",
+        "pwa": "Progressive Web Apps",
+        "performance": "Performance Optimization"
+      }
+    },
+    "mobile": {
+      "title": "Mobile Solutions",
+      "description": "Native and cross-platform mobile apps that deliver exceptional user experiences.",
+      "features": {
+        "reactNative": "React Native",
+        "platforms": "iOS & Android",
+        "crossPlatform": "Cross-platform",
+        "appStore": "App Store Optimization"
+      }
+    },
+    "cloud": {
+      "title": "Cloud & DevOps",
+      "description": "Scalable cloud infrastructure and streamlined deployment pipelines.",
+      "features": {
+        "aws": "AWS & Azure",
+        "cicd": "CI/CD Pipelines",
+        "containers": "Containerization",
+        "scaling": "Auto-scaling"
+      }
+    },
+    "backend": {
+      "title": "Backend Systems",
+      "description": "Robust APIs and database architectures that power your applications.",
+      "features": {
+        "apis": "RESTful APIs",
+        "graphql": "GraphQL",
+        "microservices": "Microservices",
+        "database": "Database Design"
+      }
+    },
+    "design": {
+      "title": "UI/UX Design",
+      "description": "Beautiful, intuitive designs that users love and businesses need.",
+      "features": {
+        "research": "User Research",
+        "prototyping": "Prototyping",
+        "systems": "Design Systems",
+        "accessibility": "Accessibility"
+      }
+    },
+    "consulting": {
+      "title": "Consulting",
+      "description": "Strategic technology guidance to help your business make informed decisions.",
+      "features": {
+        "planning": "Tech Stack Planning",
+        "review": "Architecture Review",
+        "training": "Team Training",
+        "practices": "Best Practices"
+      }
+    },
+    "logistics": {
+      "title": "Logistics",
+      "description": "Streamline your supply chain operations"
+    },
+    "erp": {
+      "title": "ERP Solutions",
+      "description": "Integrated business management systems"
+    },
+    "ecommerce": {
+      "title": "E-commerce",
+      "description": "Build and grow your online presence"
+    },
+    "pos": {
+      "title": "Point of Sale",
+      "description": "Modern retail management solutions"
+    }
+  },
+  "values": {
+    "title": "What Makes Us",
+    "titleHighlight": "Different",
+    "subtitle": "Our values aren't just words on a wall. They're the principles that guide every decision, every line of code, and every client interaction.",
+    "humanCentered": {
+      "title": "Human-Centered Approach",
+      "description": "Every line of code we write serves a human purpose. We believe technology should enhance lives, not complicate them."
+    },
+    "technical": {
+      "title": "Technical Excellence",
+      "description": "Cutting-edge technologies, best practices, and continuous learning drive our pursuit of exceptional software solutions."
+    },
+    "collaborative": {
+      "title": "Collaborative Spirit",
+      "description": "We work as partners with our clients, fostering open communication and shared ownership of project success."
+    },
+    "userFirst": {
+      "title": "User-First Design",
+      "description": "Intuitive interfaces and seamless experiences are at the core of everything we build. Your users are our priority."
+    },
+    "creative": {
+      "title": "Creative Innovation",
+      "description": "We think outside the box, bringing fresh perspectives and innovative solutions to complex challenges."
+    },
+    "reliable": {
+      "title": "Scalable & Reliable",
+      "description": "Building for today and tomorrow. Our solutions grow with your business and stand the test of time."
+    }
+  },
+  "team": {
+    "title": "THE PEOPLE BEHIND",
+    "titleHighlight": "THE VISION",
+    "subtitle": "Meet our exceptional team of leaders and innovators who drive our mission forward",
+    "members": {
+      "mohammed": {
+        "name": "Dr. Mohammed Alsuwaidi",
+        "title": "Chief Executive Officer"
+      },
+      "khalid": {
+        "name": "Dr. Khalid Al-Dhaheri",
+        "title": "Chief Technology Officer"
+      },
+      "abdullah": {
+        "name": "Abdullah Alazraq",
+        "title": "Chief Operating Officer"
+      },
+      "majid": {
+        "name": "Majid Alsayegh",
+        "title": "Head of Engineering"
+      },
+      "saif": {
+        "name": "Dr. Saif Al-Nuaimi",
+        "title": "Head of Research"
+      },
+      "mohammed2": {
+        "name": "Mohammed Alshamsi",
+        "title": "Head of Product"
+      },
+      "carlos": {
+        "name": "Carlos West",
+        "title": "Senior Developer"
+      },
+      "ahmed": {
+        "name": "Ahmed Elsayed",
+        "title": "UI/UX Designer"
+      }
+    },
+    "cta": {
+      "title": "50+ AMAZING AND TALENTED",
+      "titleHighlight": "MINDS",
+      "description": "Our diverse team of experts brings together decades of experience in technology, business, and innovation to deliver exceptional solutions.",
+      "meetTeam": "Meet Our Full Team",
+      "joinTeam": "Join Our Team"
+    }
+  },
+  "footer": {
+    "brand": "ALMUSANID",
+    "brandDescription": "Crafting elegant software solutions with passion, creativity, and technical excellence. Where code meets heart.",
+    "company": "Company",
+    "products": "Products",
+    "support": "Support",
+    "legal": "Legal",
+    "contact": "Contact",
+    "followUs": "Follow Us",
+    "newsletter": "Newsletter",
+    "subscribe": "Subscribe",
+    "enterEmail": "Enter your email",
+    "email": "hello@almusanid.com",
+    "phone": "+966 (11) 123-4567",
+    "address": "Riyadh, Saudi Arabia",
+    "scheduleCall": "Schedule a Call",
+    "copyright": "© 2025 Almusanid. All rights reserved.",
+    "madeWith": "Made with",
+    "andTech": "and cutting-edge tech",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "cookiePolicy": "Cookie Policy"
+  },
+  "contact": {
+    "title": "Let's Build Something",
+    "titleHighlight": "Amazing Together",
+    "subtitle": "Ready to transform your ideas into reality? We'd love to hear about your project and explore how we can help bring your vision to life.",
+    "form": {
+      "title": "Tell Us About Your Project",
+      "subtitle": "Fill out the form below and we'll get back to you within 24 hours.",
+      "firstName": "First Name",
+      "firstNamePlaceholder": "John",
+      "lastName": "Last Name",
+      "lastNamePlaceholder": "Doe",
+      "email": "Email",
+      "emailPlaceholder": "john@company.com",
+      "company": "Company (Optional)",
+      "companyPlaceholder": "Your Company",
+      "budget": "Project Budget",
+      "budgetOptions": {
+        "small": "$10k - $25k",
+        "medium": "$25k - $50k",
+        "large": "$50k - $100k",
+        "enterprise": "$100k+"
+      },
+      "message": "Tell us about your project",
+      "messagePlaceholder": "Describe your project, goals, and any specific requirements...",
+      "submit": "Send Message"
+    },
+    "methods": {
+      "title": "Get In Touch",
+      "subtitle": "Choose the method that works best for you. We're here to help!",
+      "email": {
+        "title": "Email Us",
+        "description": "Drop us a line anytime"
+      },
+      "phone": {
+        "title": "Call Us",
+        "description": "Let's talk about your project"
+      },
+      "chat": {
+        "title": "Live Chat",
+        "description": "Quick questions? Chat with us",
+        "availability": "Available 9 AM - 6 PM EST"
+      },
+      "visit": {
+        "title": "Visit Us",
+        "description": "Our creative workspace"
+      }
+    },
+    "consultation": {
+      "title": "Schedule a Free Consultation",
+      "description": "Book a 30-minute call to discuss your project requirements and get expert advice.",
+      "cta": "Book Free Call"
+    }
+  },
+  "ourStory": {
+    "title": "OUR",
+    "titleHighlight": "STORY",
+    "subtitle": "From a bold vision to transforming how businesses operate - this is the journey of ALMUSANID",
+    "timeline": {
+      "theSpark": {
+        "title": "The Spark",
+        "description": "It started with a simple observation: businesses were drowning in inefficient processes, disconnected systems, and manual workflows that consumed valuable time and resources.",
+        "date": "Early 2023"
+      },
+      "firstCode": {
+        "title": "First Lines of Code",
+        "description": "Our founding team of passionate developers began crafting our first solution - a logistics management system that would revolutionize supply chain operations. Countless nights were spent perfecting every detail.",
+        "date": "Mid 2023"
+      },
+      "firstSuccess": {
+        "title": "First Success",
+        "description": "Our first client, a mid-sized logistics company, saw a 40% improvement in operational efficiency within the first month. This validation fueled our determination to expand and refine our offerings.",
+        "date": "Late 2023"
+      },
+      "growingPortfolio": {
+        "title": "Growing Portfolio",
+        "description": "Success breeds ambition. We expanded our suite to include ERP systems, e-commerce platforms, and POS solutions. Each product was built with the same attention to detail and user-centric approach.",
+        "date": "Early 2024"
+      },
+      "todayBeyond": {
+        "title": "Today & Beyond",
+        "description": "Today, ALMUSANID serves dozens of businesses across various industries. We've processed millions of transactions, optimized countless workflows, and continue to innovate with emerging technologies like AI and automation.",
+        "date": "Present"
+      }
+    },
+    "values": {
+      "title": "What Drives",
+      "titleHighlight": "Us",
+      "subtitle": "Our core values shape every decision, every line of code, and every client interaction",
+      "innovation": {
+        "title": "Innovation First",
+        "description": "We constantly push boundaries, embracing new technologies and methodologies to deliver cutting-edge solutions that stay ahead of the curve."
+      },
+      "clientSuccess": {
+        "title": "Client Success",
+        "description": "Your success is our success. We build lasting partnerships by understanding your unique challenges and crafting solutions that drive real results."
+      },
+      "quality": {
+        "title": "Quality Excellence",
+        "description": "Every product we deliver meets the highest standards of quality, security, and performance. We believe in doing things right the first time."
+      }
+    },
+    "cta": {
+      "title": "Ready to Be Part of",
+      "titleHighlight": "Our Story?",
+      "description": "Join the businesses that have already transformed their operations with ALMUSANID. Let's write the next chapter together.",
+      "button": "Start Your Journey"
+    }
+  },
+  "jobs": {
+    "title": "Join Our",
+    "titleHighlight": "Team",
+    "subtitle": "Build the future of enterprise software with cutting-edge technology. We're looking for passionate developers to join our mission of transforming business operations.",
+    "culture": {
+      "remote": "Remote-first culture",
+      "headquarters": "Dubai headquarters",
+      "salaries": "Competitive salaries"
+    },
+    "applyNow": "Apply Now",
+    "sendResume": "Send Your Resume",
+    "noRole": {
+      "title": "Don't see the perfect role?",
+      "description": "We're always looking for talented individuals to join our team. Send us your resume and let us know how you'd like to contribute to our mission."
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "subtitle": "Oops! Page not found",
+    "returnHome": "Return to Home"
+  },
+  "jobApplication": {
+    "title": "Job Application",
+    "backToJobs": "Back to Jobs",
+    "jobNotFound": "Job Not Found",
+    "requiredSkills": "Required Skills",
+    "jobDescription": "Job Description",
+    "requirements": "Requirements",
+    "applyForPosition": "Apply for this Position",
+    "personalInformation": "Personal Information",
+    "form": {
+      "firstName": "First Name",
+      "firstNamePlaceholder": "Enter your first name",
+      "lastName": "Last Name",
+      "lastNamePlaceholder": "Enter your last name",
+      "email": "Email Address",
+      "emailPlaceholder": "your.email@example.com",
+      "phone": "Phone Number",
+      "phonePlaceholder": "+971 50 123 4567",
+      "location": "Current Location",
+      "locationPlaceholder": "Dubai, UAE",
+      "experience": "Years of Experience",
+      "experienceOptions": {
+        "select": "Select experience",
+        "0-1": "0-1 years",
+        "1-3": "1-3 years",
+        "3-5": "3-5 years",
+        "5-8": "5-8 years",
+        "8+": "8+ years"
+      },
+      "linkedIn": "LinkedIn Profile",
+      "linkedInPlaceholder": "https://linkedin.com/in/yourprofile",
+      "portfolio": "Portfolio/Website",
+      "portfolioPlaceholder": "https://yourportfolio.com",
+      "resume": "Resume/CV",
+      "resumePlaceholder": "Choose file (PDF, DOC, DOCX)",
+      "coverLetter": "Cover Letter",
+      "coverLetterPlaceholder": "Tell us why you're interested in this position and what makes you a great fit...",
+      "submit": "Submit Application",
+      "submitting": "Submitting Application..."
+    },
+    "success": {
+      "title": "Application Submitted!",
+      "message": "Thank you for applying to the {jobTitle} position. We've received your application and will review it shortly. Our team will get back to you within 5-7 business days.",
+      "backToJobs": "Back to Jobs"
+    },
+    "jobDetails": {
+      "department": "Department",
+      "location": "Location",
+      "salary": "Salary",
+      "type": "Job Type",
+      "fullTime": "Full-time",
+      "partTime": "Part-time",
+      "contract": "Contract",
+      "remote": "Remote"
+    }
+  },
+  "newsroom": {
+    "title": "NEWS",
+    "titleHighlight": "ROOM",
+    "subtitle": "Stay updated with the latest news, product launches, partnerships, and company milestones from ALMUSANID",
+    "categories": {
+      "all": "All",
+      "productLaunch": "Product Launch",
+      "partnership": "Partnership",
+      "awards": "Awards",
+      "productUpdate": "Product Update",
+      "companyNews": "Company News",
+      "sustainability": "Sustainability"
+    },
+    "featured": "Featured",
+    "latestNews": "Latest News",
+    "readMore": "Read more",
+    "readFullArticle": "Read Full Article",
+    "articles": {
+      "aiLogistics": {
+        "title": "ALMUSANID Launches Revolutionary AI-Powered Logistics Platform",
+        "excerpt": "Our new platform integrates machine learning algorithms to optimize supply chain operations, reducing delivery times by up to 40% and operational costs by 25%."
+      },
+      "retailPartnership": {
+        "title": "Partnership with Leading Regional Retailers Expands E-commerce Reach",
+        "excerpt": "Strategic partnerships with major retail chains across the Middle East will bring our e-commerce solutions to over 500 new stores in the next quarter."
+      },
+      "innovationAward": {
+        "title": "ALMUSANID Wins 'Innovation in Enterprise Software' Award",
+        "excerpt": "Recognition for our groundbreaking ERP system that has transformed how businesses manage their operations across multiple industries."
+      },
+      "posSystem": {
+        "title": "New POS System Reduces Transaction Time by 60%",
+        "excerpt": "Our latest point-of-sale solution features advanced payment processing and inventory management capabilities that streamline retail operations."
+      },
+      "dubaiExpansion": {
+        "title": "Expanding Operations: New Development Center Opens in Dubai",
+        "excerpt": "Our new 50,000 sq ft facility will house 200+ engineers and designers, accelerating our product development and regional expansion plans."
+      },
+      "sustainability": {
+        "title": "Sustainability Initiative: Carbon-Neutral Operations by 2025",
+        "excerpt": "ALMUSANID commits to achieving carbon neutrality across all operations through renewable energy adoption and green technology investments."
+      }
+    }
+  },
+  "testimonials": {
+    "title": "What Our",
+    "titleHighlight": "Clients Say",
+    "subtitle": "Don't just take our word for it. Here's what industry leaders and innovative companies have to say about working with us.",
+    "clientsCount": "200+",
+    "clientsText": "satisfied clients who trust us with their digital transformation",
+    "englishTestimonials": [
+      {
+        "name": "Sarah Chen",
+        "role": "CTO",
+        "company": "TechFlow Solutions",
+        "content": "Working with this team transformed our entire digital infrastructure. Their technical expertise and attention to detail exceeded our expectations.",
+        "rating": 5,
+        "avatar": "SC"
+      },
+      {
+        "name": "Marcus Rodriguez",
+        "role": "Founder & CEO",
+        "company": "InnovateLab",
+        "content": "The user experience they crafted for our platform is phenomenal. Our customer engagement increased by 300% after the redesign.",
+        "rating": 5,
+        "avatar": "MR"
+      },
+      {
+        "name": "Emily Watson",
+        "role": "Product Manager",
+        "company": "DataVision Corp",
+        "content": "Their collaborative approach made all the difference. They helped us discover what we actually needed.",
+        "rating": 5,
+        "avatar": "EW"
+      },
+      {
+        "name": "David Kim",
+        "role": "VP of Engineering",
+        "company": "CloudSync Technologies",
+        "content": "Exceptional code quality and architecture. Six months later, our system is still running flawlessly with zero downtime.",
+        "rating": 5,
+        "avatar": "DK"
+      },
+      {
+        "name": "Lisa Thompson",
+        "role": "Digital Director",
+        "company": "RetailNext",
+        "content": "They delivered our e-commerce platform ahead of schedule and under budget. Performance improvements were immediate.",
+        "rating": 5,
+        "avatar": "LT"
+      },
+      {
+        "name": "Alex Johnson",
+        "role": "Startup Founder",
+        "company": "GreenTech Innovations",
+        "content": "As a non-technical founder, I was worried about the development process. They made everything transparent and easy to understand.",
+        "rating": 5,
+        "avatar": "AJ"
+      },
+      {
+        "name": "Rachel Park",
+        "role": "Head of Design",
+        "company": "CreativeFlow",
+        "content": "The design system they created is both beautiful and functional. Our design team productivity increased significantly.",
+        "rating": 5,
+        "avatar": "RP"
+      },
+      {
+        "name": "Tom Wilson",
+        "role": "CTO",
+        "company": "FinanceHub",
+        "content": "Security and compliance were handled flawlessly. They understood our regulatory requirements from day one.",
+        "rating": 5,
+        "avatar": "TW"
+      },
+      {
+        "name": "Maria Garcia",
+        "role": "Product Owner",
+        "company": "EduTech Pro",
+        "content": "The mobile app they built has over 4.8 stars in app stores. User retention improved by 150%.",
+        "rating": 5,
+        "avatar": "MG"
+      },
+      {
+        "name": "James Lee",
+        "role": "Founder",
+        "company": "HealthTech Solutions",
+        "content": "They delivered a HIPAA-compliant platform that scales beautifully. Our users love the intuitive interface.",
+        "rating": 5,
+        "avatar": "JL"
+      },
+      {
+        "name": "Anna Schmidt",
+        "role": "VP Product",
+        "company": "LogisticsPro",
+        "content": "The real-time tracking system they built handles millions of events daily without any performance issues.",
+        "rating": 5,
+        "avatar": "AS"
+      },
+      {
+        "name": "Chris Brown",
+        "role": "Tech Lead",
+        "company": "MediaStream",
+        "content": "Their microservices architecture reduced our deployment time from hours to minutes. Incredible work.",
+        "rating": 5,
+        "avatar": "CB"
+      }
+    ]
+  },
+  "forms": {
+    "validation": {
+      "required": "This field is required",
+      "email": "Please enter a valid email address",
+      "phone": "Please enter a valid phone number",
+      "minLength": "Must be at least {min} characters",
+      "maxLength": "Must be no more than {max} characters",
+      "fileSize": "File size is too large",
+      "fileType": "File type is not supported"
+    },
+    "messages": {
+      "success": "Successfully submitted",
+      "error": "An error occurred, please try again",
+      "uploading": "Uploading...",
+      "processing": "Processing..."
+    }
+  },
+  "accessibility": {
+    "skipToContent": "Skip to content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "toggleLanguage": "Toggle language",
+    "scrollToTop": "Scroll to top",
+    "playVideo": "Play video",
+    "pauseVideo": "Pause video",
+    "expandSection": "Expand section",
+    "collapseSection": "Collapse section"
+  },
+  "time": {
+    "readTime": "read time",
+    "minutes": "minutes",
+    "minute": "minute",
+    "hours": "hours",
+    "hour": "hour",
+    "days": "days",
+    "day": "day",
+    "weeks": "weeks",
+    "week": "week",
+    "months": "months",
+    "month": "month",
+    "years": "years",
+    "year": "year",
+    "ago": "ago",
+    "now": "now",
+    "today": "today",
+    "yesterday": "yesterday",
+    "tomorrow": "tomorrow"
+  }
+}

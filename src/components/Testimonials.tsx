@@ -1,6 +1,9 @@
 import { Star, Quote } from 'lucide-react'
 import { useState } from 'react'
 import { motion, Variants } from 'framer-motion'
+import { useRTLAnimations } from '@/hooks/useRTLAnimations'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { useTranslation } from '@/hooks/useTranslation'
 
 const testimonials = [
     {
@@ -112,111 +115,115 @@ const TestimonialCard = ({ testimonial, className = "", onHover, isHovered = fal
     className?: string,
     onHover?: (isHovered: boolean) => void,
     isHovered?: boolean
-}) => (
-    <motion.div
-        className={`innovation-card mb-6 relative transition-all duration-300 ${className} ${isHovered ? 'shadow-2xl z-30' : ''
-            }`}
-        onMouseEnter={() => onHover?.(true)}
-        onMouseLeave={() => onHover?.(false)}
-        style={isHovered ? {
-            background: 'linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)',
-            backgroundSize: '400% 400%',
-            animation: 'gradient-move 8s ease infinite'
-        } : {}}
-        initial={{ opacity: 0, scale: 0.9, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-        whileHover={{
-            scale: 1.02,
-            y: -5,
-            transition: { duration: 0.2 }
-        }}
-    >
-        <motion.div
-            className={`absolute top-4 right-4 ${isHovered ? 'text-white/30' : 'text-primary/20'}`}
-            initial={{ opacity: 0, rotate: -45, scale: 0 }}
-            animate={{ opacity: 1, rotate: 0, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.4, ease: [0.68, -0.55, 0.265, 1.55] }}
-        >
-            <Quote className="w-6 h-6" />
-        </motion.div>
+}) => {
+    const { isRTL } = useLanguage();
 
+    return (
         <motion.div
-            className="flex items-center gap-1 mb-3"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3, duration: 0.4 }}
-        >
-            {[...Array(testimonial.rating)].map((_, i) => (
-                <motion.div
-                    key={i}
-                    initial={{ opacity: 0, scale: 0, rotate: -180 }}
-                    animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                    transition={{
-                        delay: 0.4 + i * 0.1,
-                        duration: 0.3,
-                        ease: [0.68, -0.55, 0.265, 1.55]
-                    }}
-                >
-                    <Star className={`w-3 h-3 ${isHovered ? 'fill-white text-white' : 'fill-yellow-400 text-yellow-400'
-                        }`} />
-                </motion.div>
-            ))}
-        </motion.div>
-
-        <motion.p
-            className={`leading-relaxed mb-4 text-sm relative z-10 ${isHovered ? 'text-white font-medium' : 'text-muted-foreground'}`}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.4 }}
-        >
-            "{testimonial.content}"
-        </motion.p>
-
-        <motion.div
-            className="flex items-center gap-3"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.6, duration: 0.4 }}
+            className={`innovation-card mb-4 sm:mb-6 relative transition-all duration-300 mobile-testimonial-rtl ${className} ${isHovered ? 'shadow-2xl z-30' : ''
+                }`}
+            onMouseEnter={() => onHover?.(true)}
+            onMouseLeave={() => onHover?.(false)}
+            style={isHovered ? {
+                background: 'linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab)',
+                backgroundSize: '400% 400%',
+                animation: 'gradient-move 8s ease infinite'
+            } : {}}
+            initial={{ opacity: 0, scale: 0.9, y: 20, x: isRTL ? 20 : -20 }}
+            animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            whileHover={{
+                scale: 1.02,
+                y: -5,
+                transition: { duration: 0.2 }
+            }}
         >
             <motion.div
-                className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-white font-semibold text-xs"
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.7, duration: 0.3, ease: [0.68, -0.55, 0.265, 1.55] }}
-                whileHover={{ scale: 1.1, rotate: 5 }}
+                className={`absolute top-4 ${isRTL ? 'left-4' : 'right-4'} ${isHovered ? 'text-white/30' : 'text-primary/20'}`}
+                initial={{ opacity: 0, rotate: isRTL ? 45 : -45, scale: 0 }}
+                animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                transition={{ delay: 0.2, duration: 0.4, ease: [0.68, -0.55, 0.265, 1.55] }}
             >
-                {testimonial.avatar}
+                <Quote className="w-6 h-6" />
             </motion.div>
-            <div>
-                <motion.h4
-                    className={`font-semibold text-sm ${isHovered ? 'text-white' : 'text-foreground'}`}
-                    initial={{ opacity: 0, y: 5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.8, duration: 0.3 }}
+
+            <motion.div
+                className={`flex items-center gap-1 mb-3 mobile-rtl-flex-row ${isRTL ? 'justify-end' : 'justify-start'}`}
+                initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3, duration: 0.4 }}
+            >
+                {[...Array(testimonial.rating)].map((_, i) => (
+                    <motion.div
+                        key={i}
+                        initial={{ opacity: 0, scale: 0, rotate: -180 }}
+                        animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                        transition={{
+                            delay: 0.4 + i * 0.1,
+                            duration: 0.3,
+                            ease: [0.68, -0.55, 0.265, 1.55]
+                        }}
+                    >
+                        <Star className={`w-3 h-3 ${isHovered ? 'fill-white text-white' : 'fill-yellow-400 text-yellow-400'
+                            }`} />
+                    </motion.div>
+                ))}
+            </motion.div>
+
+            <motion.p
+                className={`leading-relaxed mb-4 text-sm relative z-10 ${isHovered ? 'text-white font-medium' : 'text-muted-foreground'}`}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.4 }}
+            >
+                "{testimonial.content}"
+            </motion.p>
+
+            <motion.div
+                className={`flex items-center gap-3 mobile-rtl-flex-row ${isRTL ? 'flex-row-reverse' : ''}`}
+                initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.6, duration: 0.4 }}
+            >
+                <motion.div
+                    className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-white font-semibold text-xs"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.7, duration: 0.3, ease: [0.68, -0.55, 0.265, 1.55] }}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
                 >
-                    {testimonial.name}
-                </motion.h4>
-                <motion.p
-                    className={`text-xs ${isHovered ? 'text-white/90' : 'text-muted-foreground'}`}
-                    initial={{ opacity: 0, y: 5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.9, duration: 0.3 }}
-                >
-                    {testimonial.role}
-                </motion.p>
-                <motion.p
-                    className={`text-xs ${isHovered ? 'text-white/80' : 'text-muted-foreground/80'}`}
-                    initial={{ opacity: 0, y: 5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1, duration: 0.3 }}
-                >
-                    {testimonial.company}
-                </motion.p>
-            </div>
+                    {testimonial.avatar}
+                </motion.div>
+                <div>
+                    <motion.h4
+                        className={`font-semibold text-sm ${isHovered ? 'text-white' : 'text-foreground'}`}
+                        initial={{ opacity: 0, y: 5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.8, duration: 0.3 }}
+                    >
+                        {testimonial.name}
+                    </motion.h4>
+                    <motion.p
+                        className={`text-xs ${isHovered ? 'text-white/90' : 'text-muted-foreground'}`}
+                        initial={{ opacity: 0, y: 5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.9, duration: 0.3 }}
+                    >
+                        {testimonial.role}
+                    </motion.p>
+                    <motion.p
+                        className={`text-xs ${isHovered ? 'text-white/80' : 'text-muted-foreground/80'}`}
+                        initial={{ opacity: 0, y: 5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 1, duration: 0.3 }}
+                    >
+                        {testimonial.company}
+                    </motion.p>
+                </div>
+            </motion.div>
         </motion.div>
-    </motion.div>
-)
+    );
+}
 
 const MarqueeColumn = ({ testimonials: columnTestimonials, direction = "up", speed = "20s", onCardHover }: {
     testimonials: typeof testimonials,
@@ -275,19 +282,27 @@ const MarqueeColumn = ({ testimonials: columnTestimonials, direction = "up", spe
 
 export default function Testimonials() {
     const [isAnyCardHovered, setIsAnyCardHovered] = useState(false)
+    const { isRTL } = useLanguage()
+    const { t } = useTranslation()
+    const { textRevealVariants } = useRTLAnimations();
 
     const handleGlobalCardHover = (isHovered: boolean) => {
         setIsAnyCardHovered(isHovered)
     }
 
     const titleVariants: Variants = {
-        hidden: { opacity: 0, y: 30 },
+        hidden: {
+            opacity: 0,
+            y: 30,
+            x: isRTL ? 20 : -20, // Title slides from reading direction
+        },
         visible: {
             opacity: 1,
             y: 0,
+            x: 0,
             transition: {
                 duration: 0.8,
-                ease: [0.25, 0.1, 0.25, 1]
+                ease: "easeOut"
             }
         }
     }
@@ -338,16 +353,15 @@ export default function Testimonials() {
                             className="text-4xl md:text-5xl font-bold mb-6"
                             variants={titleVariants}
                         >
-                            What Our
-                            <span className="text-gradient"> Clients Say</span>
+                            {t('testimonials.title')}
+                            <span className="text-gradient"> {t('testimonials.titleHighlight')}</span>
                         </motion.h2>
                         <motion.p
                             className="text-xl text-muted-foreground max-w-3xl mx-auto"
                             variants={titleVariants}
                             transition={{ delay: 0.2 }}
                         >
-                            Don't just take our word for it. Here's what industry leaders and innovative companies
-                            have to say about working with us.
+                            {t('testimonials.subtitle')}
                         </motion.p>
                     </motion.div>
 
@@ -409,15 +423,15 @@ export default function Testimonials() {
                             viewport={{ once: true }}
                             transition={{ delay: 0.2, duration: 0.5 }}
                         >
-                            Join <motion.span
+                            {t('common.join')} <motion.span
                                 className="font-semibold text-primary"
                                 initial={{ scale: 0.8 }}
                                 whileInView={{ scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: 0.4, duration: 0.3, ease: [0.68, -0.55, 0.265, 1.55] }}
                             >
-                                200+
-                            </motion.span> satisfied clients who trust us with their digital transformation
+                                {t('testimonials.clientsCount')}
+                            </motion.span> {t('testimonials.clientsText')}
                         </motion.p>
                     </motion.div>
                 </div>

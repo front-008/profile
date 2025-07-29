@@ -3,44 +3,63 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { motion } from 'framer-motion'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { useTranslation } from '@/hooks/useTranslation'
+import { useRTLAnimations } from '@/hooks/useRTLAnimations'
 
-const contactMethods = [
+const getContactMethods = (t: (key: string) => string) => [
   {
     icon: Mail,
-    title: "Email Us",
-    description: "Drop us a line anytime",
-    contact: "hello@innovativecode.com",
+    title: t('contact.methods.email.title'),
+    description: t('contact.methods.email.description'),
+    contact: t('footer.email'),
     color: "hsl(var(--primary))"
   },
   {
     icon: Phone,
-    title: "Call Us",
-    description: "Let's talk about your project",
-    contact: "+1 (555) 123-4567",
+    title: t('contact.methods.phone.title'),
+    description: t('contact.methods.phone.description'),
+    contact: t('footer.phone'),
     color: "hsl(var(--innovation-blue))"
   },
   {
     icon: MessageSquare,
-    title: "Live Chat",
-    description: "Quick questions? Chat with us",
-    contact: "Available 9 AM - 6 PM EST",
+    title: t('contact.methods.chat.title'),
+    description: t('contact.methods.chat.description'),
+    contact: t('contact.methods.chat.availability'),
     color: "hsl(var(--innovation-purple))"
   },
   {
     icon: MapPin,
-    title: "Visit Us",
-    description: "Our creative workspace",
-    contact: "San Francisco, CA",
+    title: t('contact.methods.visit.title'),
+    description: t('contact.methods.visit.description'),
+    contact: t('footer.address'),
     color: "hsl(var(--innovation-teal))"
   }
 ]
 
 export default function Contact() {
+  const { isRTL } = useLanguage()
+  const { t } = useTranslation()
+  const {
+    staggerContainerVariants,
+    textRevealVariants,
+    iconVariants,
+    cardHoverVariants
+  } = useRTLAnimations()
+
+  const contactMethods = getContactMethods(t)
+
   const titleVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: {
+      opacity: 0,
+      y: 30,
+      x: isRTL ? 20 : -20
+    },
     visible: {
       opacity: 1,
       y: 0,
+      x: 0,
       transition: {
         duration: 0.8,
         ease: "easeOut"
@@ -54,16 +73,22 @@ export default function Contact() {
       opacity: 1,
       transition: {
         staggerChildren: 0.2,
-        delayChildren: 0.1
+        delayChildren: 0.1,
+        staggerDirection: isRTL ? -1 : 1
       }
     }
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: {
+      opacity: 0,
+      y: 30,
+      x: isRTL ? 20 : -20
+    },
     visible: {
       opacity: 1,
       y: 0,
+      x: 0,
       transition: {
         duration: 0.6,
         ease: "easeOut"
@@ -72,7 +97,10 @@ export default function Contact() {
   }
 
   const formVariants = {
-    hidden: { opacity: 0, x: -50 },
+    hidden: {
+      opacity: 0,
+      x: isRTL ? 50 : -50
+    },
     visible: {
       opacity: 1,
       x: 0,
@@ -84,7 +112,10 @@ export default function Contact() {
   }
 
   const contactMethodVariants = {
-    hidden: { opacity: 0, x: 50 },
+    hidden: {
+      opacity: 0,
+      x: isRTL ? -50 : 50
+    },
     visible: {
       opacity: 1,
       x: 0,
@@ -98,34 +129,33 @@ export default function Contact() {
   return (
     <section className="py-24 bg-gradient-to-b from-accent/10 to-background">
       <div className="container mx-auto px-6">
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={titleVariants}
         >
-          <motion.h2 
+          <motion.h2
             className="text-4xl md:text-5xl font-bold mb-6"
             variants={titleVariants}
           >
-            Let's Build Something
-            <span className="text-gradient"> Amazing Together</span>
+            {t('contact.title')}
+            <span className="text-gradient"> {t('contact.titleHighlight')}</span>
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-xl text-muted-foreground max-w-3xl mx-auto"
             variants={titleVariants}
             transition={{ delay: 0.2 }}
           >
-            Ready to transform your ideas into reality? We'd love to hear about your project 
-            and explore how we can help bring your vision to life.
+            {t('contact.subtitle')}
           </motion.p>
         </motion.div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 mobile-contact-rtl">
           {/* Contact Form */}
-          <motion.div 
-            className="space-y-8"
+          <motion.div
+            className="space-y-6 sm:space-y-8"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
@@ -134,63 +164,63 @@ export default function Contact() {
             <motion.div
               variants={itemVariants}
             >
-              <motion.h3 
+              <motion.h3
                 className="text-2xl font-semibold mb-4"
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                Tell Us About Your Project
+                {t('contact.form.title')}
               </motion.h3>
-              <motion.p 
+              <motion.p
                 className="text-muted-foreground"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
-                Fill out the form below and we'll get back to you within 24 hours.
+                {t('contact.form.subtitle')}
               </motion.p>
             </motion.div>
-            
-            <motion.form 
+
+            <motion.form
               className="space-y-6"
               variants={containerVariants}
             >
-              <motion.div 
-                className="grid grid-cols-1 md:grid-cols-2 gap-4"
+              <motion.div
+                className="grid grid-cols-1 md:grid-cols-2 gap-4 mobile-form-rtl"
                 variants={itemVariants}
               >
                 <motion.div
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: isRTL ? 20 : -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5 }}
                 >
-                  <label className="block text-sm font-medium mb-2">First Name</label>
-                  <Input placeholder="John" className="w-full" />
+                  <label className="block text-sm font-medium mb-2">{t('contact.form.firstName')}</label>
+                  <Input placeholder={t('contact.form.firstNamePlaceholder')} className="w-full" />
                 </motion.div>
                 <motion.div
-                  initial={{ opacity: 0, x: 20 }}
+                  initial={{ opacity: 0, x: isRTL ? -20 : 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.1 }}
                 >
-                  <label className="block text-sm font-medium mb-2">Last Name</label>
-                  <Input placeholder="Doe" className="w-full" />
+                  <label className="block text-sm font-medium mb-2">{t('contact.form.lastName')}</label>
+                  <Input placeholder={t('contact.form.lastNamePlaceholder')} className="w-full" />
                 </motion.div>
               </motion.div>
-              
+
               <motion.div variants={itemVariants}>
-                <motion.label 
+                <motion.label
                   className="block text-sm font-medium mb-2"
                   initial={{ opacity: 0, y: -10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3 }}
                 >
-                  Email
+                  {t('contact.form.email')}
                 </motion.label>
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
@@ -198,19 +228,19 @@ export default function Contact() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.1 }}
                 >
-                  <Input type="email" placeholder="john@company.com" className="w-full" />
+                  <Input type="email" placeholder={t('contact.form.emailPlaceholder')} className="w-full" />
                 </motion.div>
               </motion.div>
-              
+
               <motion.div variants={itemVariants}>
-                <motion.label 
+                <motion.label
                   className="block text-sm font-medium mb-2"
                   initial={{ opacity: 0, y: -10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3 }}
                 >
-                  Company (Optional)
+                  {t('contact.form.company')}
                 </motion.label>
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
@@ -218,21 +248,21 @@ export default function Contact() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.1 }}
                 >
-                  <Input placeholder="Your Company" className="w-full" />
+                  <Input placeholder={t('contact.form.companyPlaceholder')} className="w-full" />
                 </motion.div>
               </motion.div>
-              
+
               <motion.div variants={itemVariants}>
-                <motion.label 
+                <motion.label
                   className="block text-sm font-medium mb-2"
                   initial={{ opacity: 0, y: -10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3 }}
                 >
-                  Project Budget
+                  {t('contact.form.budget')}
                 </motion.label>
-                <motion.select 
+                <motion.select
                   className="w-full p-3 border border-input rounded-md bg-background"
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -240,22 +270,22 @@ export default function Contact() {
                   transition={{ duration: 0.4, delay: 0.1 }}
                   whileFocus={{ scale: 1.02 }}
                 >
-                  <option>$10k - $25k</option>
-                  <option>$25k - $50k</option>
-                  <option>$50k - $100k</option>
-                  <option>$100k+</option>
+                  <option>{t('contact.form.budgetOptions.small')}</option>
+                  <option>{t('contact.form.budgetOptions.medium')}</option>
+                  <option>{t('contact.form.budgetOptions.large')}</option>
+                  <option>{t('contact.form.budgetOptions.enterprise')}</option>
                 </motion.select>
               </motion.div>
-              
+
               <motion.div variants={itemVariants}>
-                <motion.label 
+                <motion.label
                   className="block text-sm font-medium mb-2"
                   initial={{ opacity: 0, y: -10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3 }}
                 >
-                  Tell us about your project
+                  {t('contact.form.message')}
                 </motion.label>
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
@@ -263,28 +293,28 @@ export default function Contact() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.1 }}
                 >
-                  <Textarea 
-                    placeholder="Describe your project, goals, and any specific requirements..."
+                  <Textarea
+                    placeholder={t('contact.form.messagePlaceholder')}
                     className="w-full min-h-[120px]"
                   />
                 </motion.div>
               </motion.div>
-              
+
               <motion.div
                 variants={itemVariants}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
                 <Button className="btn-hero w-full group">
-                  Send Message
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                  {t('contact.form.submit')}
+                  <ArrowRight className={`w-5 h-5 ${isRTL ? 'mr-2 group-hover:-translate-x-1' : 'ml-2 group-hover:translate-x-1'} transition-transform ${isRTL ? 'rotate-180' : ''}`} />
                 </Button>
               </motion.div>
             </motion.form>
           </motion.div>
-          
+
           {/* Contact Methods */}
-          <motion.div 
+          <motion.div
             className="space-y-8"
             initial="hidden"
             whileInView="visible"
@@ -294,27 +324,27 @@ export default function Contact() {
             <motion.div
               variants={itemVariants}
             >
-              <motion.h3 
+              <motion.h3
                 className="text-2xl font-semibold mb-4"
-                initial={{ opacity: 0, x: 20 }}
+                initial={{ opacity: 0, x: isRTL ? -20 : 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                Get In Touch
+                {t('contact.methods.title')}
               </motion.h3>
-              <motion.p 
+              <motion.p
                 className="text-muted-foreground"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
-                Choose the method that works best for you. We're here to help!
+                {t('contact.methods.subtitle')}
               </motion.p>
             </motion.div>
-            
-            <motion.div 
+
+            <motion.div
               className="space-y-6"
               variants={containerVariants}
             >
@@ -325,30 +355,30 @@ export default function Contact() {
                     key={index}
                     className="innovation-card group cursor-pointer"
                     variants={itemVariants}
-                    whileHover={{ 
-                      scale: 1.05, 
+                    whileHover={{
+                      scale: 1.05,
                       y: -5,
                       transition: { duration: 0.3, ease: "easeOut" }
                     }}
                     whileTap={{ scale: 0.95 }}
-                    initial={{ opacity: 0, x: 50 }}
+                    initial={{ opacity: 0, x: isRTL ? -50 : 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1, duration: 0.5 }}
                   >
-                    <div className="flex items-start gap-4">
-                      <motion.div 
+                    <div className={`flex items-start gap-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
+                      <motion.div
                         className="p-3 rounded-xl pulse-glow"
                         style={{ backgroundColor: `${method.color}15`, color: method.color }}
                         initial={{ scale: 0, rotate: -180 }}
                         whileInView={{ scale: 1, rotate: 0 }}
                         viewport={{ once: true }}
-                        transition={{ 
-                          delay: index * 0.1 + 0.2, 
-                          duration: 0.5, 
-                          ease: "backOut" 
+                        transition={{
+                          delay: index * 0.1 + 0.2,
+                          duration: 0.5,
+                          ease: "backOut"
                         }}
-                        whileHover={{ 
+                        whileHover={{
                           rotate: 360,
                           transition: { duration: 0.6 }
                         }}
@@ -356,7 +386,7 @@ export default function Contact() {
                         <Icon className="w-6 h-6" />
                       </motion.div>
                       <div className="flex-1">
-                        <motion.h4 
+                        <motion.h4
                           className="font-semibold mb-1 group-hover:text-primary transition-colors"
                           initial={{ opacity: 0, y: 10 }}
                           whileInView={{ opacity: 1, y: 0 }}
@@ -365,7 +395,7 @@ export default function Contact() {
                         >
                           {method.title}
                         </motion.h4>
-                        <motion.p 
+                        <motion.p
                           className="text-sm text-muted-foreground mb-2"
                           initial={{ opacity: 0, y: 10 }}
                           whileInView={{ opacity: 1, y: 0 }}
@@ -374,8 +404,8 @@ export default function Contact() {
                         >
                           {method.description}
                         </motion.p>
-                        <motion.p 
-                          className="text-sm font-medium" 
+                        <motion.p
+                          className="text-sm font-medium"
                           style={{ color: method.color }}
                           initial={{ opacity: 0, y: 10 }}
                           whileInView={{ opacity: 1, y: 0 }}
@@ -390,20 +420,20 @@ export default function Contact() {
                 )
               })}
             </motion.div>
-            
-            <motion.div 
+
+            <motion.div
               className="innovation-card bg-gradient-to-br from-primary/5 to-accent/5"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.6, duration: 0.6, ease: "backOut" }}
-              whileHover={{ 
+              whileHover={{
                 scale: 1.02,
                 boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
                 transition: { duration: 0.3 }
               }}
             >
-              <motion.div 
+              <motion.div
                 className="flex items-center gap-4 mb-4"
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -418,16 +448,16 @@ export default function Contact() {
                 >
                   <Calendar className="w-6 h-6 text-primary" />
                 </motion.div>
-                <h4 className="font-semibold">Schedule a Free Consultation</h4>
+                <h4 className="font-semibold">{t('contact.consultation.title')}</h4>
               </motion.div>
-              <motion.p 
+              <motion.p
                 className="text-muted-foreground mb-6"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 1, duration: 0.5 }}
               >
-                Book a 30-minute call to discuss your project requirements and get expert advice.
+                {t('contact.consultation.description')}
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -438,7 +468,7 @@ export default function Contact() {
                 whileTap={{ scale: 0.98 }}
               >
                 <Button variant="outline" className="w-full border-primary/30 hover:border-primary hover:bg-primary/5">
-                  Book Free Call
+                  {t('contact.consultation.cta')}
                 </Button>
               </motion.div>
             </motion.div>

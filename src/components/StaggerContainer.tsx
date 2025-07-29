@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { ReactNode } from 'react'
+import { useRTLAnimations } from '@/hooks/useRTLAnimations'
 
 interface StaggerContainerProps {
   children: ReactNode
@@ -14,13 +15,16 @@ export default function StaggerContainer({
   initialDelay = 0,
   className = ""
 }: StaggerContainerProps) {
+  const { isRTL } = useRTLAnimations();
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
         staggerChildren: staggerDelay,
-        delayChildren: initialDelay
+        delayChildren: initialDelay,
+        staggerDirection: isRTL ? -1 : 1, // Reverse stagger direction for RTL
       }
     }
   }
@@ -29,15 +33,17 @@ export default function StaggerContainer({
     hidden: { 
       opacity: 0, 
       y: 30,
+      x: isRTL ? 20 : -20, // Add horizontal movement based on reading direction
       scale: 0.95
     },
     visible: {
       opacity: 1,
       y: 0,
+      x: 0,
       scale: 1,
       transition: {
         duration: 0.6,
-        ease: "easeOut"
+        ease: [0.25, 0.1, 0.25, 1] // Use more sophisticated easing
       }
     }
   }

@@ -2,8 +2,20 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Code, Users, Lightbulb, Target, Rocket, Heart } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { useTranslation } from '@/hooks/useTranslation'
+import { useRTLAnimations } from '@/hooks/useRTLAnimations'
 
 const OurStory = () => {
+    const { isRTL } = useLanguage()
+    const { t } = useTranslation()
+    const {
+        staggerContainerVariants,
+        textRevealVariants,
+        iconVariants,
+        cardHoverVariants
+    } = useRTLAnimations()
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50 to-violet-50">
             <Navbar />
@@ -19,11 +31,11 @@ const OurStory = () => {
                     >
                         <motion.h1
                             className="text-5xl md:text-7xl font-bold text-gray-900 mb-6"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
+                            initial={{ opacity: 0, y: 20, x: isRTL ? 20 : -20 }}
+                            animate={{ opacity: 1, y: 0, x: 0 }}
                             transition={{ duration: 0.8, delay: 0.2 }}
                         >
-                            OUR <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">STORY</span>
+                            {t('ourStory.title')} <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">{t('ourStory.titleHighlight')}</span>
                         </motion.h1>
                         <motion.p
                             className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed"
@@ -31,8 +43,7 @@ const OurStory = () => {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.4 }}
                         >
-                            From a bold vision to transforming how businesses operate -
-                            this is the journey of ALMUSANID
+                            {t('ourStory.subtitle')}
                         </motion.p>
                     </motion.div>
                 </div>
@@ -63,12 +74,11 @@ const OurStory = () => {
                                                 <Lightbulb className="w-6 h-6 text-white" />
                                             </div>
                                         </div>
-                                        <h3 className="text-xl font-bold text-gray-900 mb-3">The Spark</h3>
+                                        <h3 className="text-xl font-bold text-gray-900 mb-3">{t('ourStory.timeline.theSpark.title')}</h3>
                                         <p className="text-gray-700 mb-3 text-sm">
-                                            It started with a simple observation: businesses were drowning in inefficient processes,
-                                            disconnected systems, and manual workflows that consumed valuable time and resources.
+                                            {t('ourStory.timeline.theSpark.description')}
                                         </p>
-                                        <span className="text-purple-600 font-semibold text-sm">Early 2023</span>
+                                        <span className="text-purple-600 font-semibold text-sm">{t('ourStory.timeline.theSpark.date')}</span>
                                     </div>
                                 </div>
 
@@ -81,12 +91,11 @@ const OurStory = () => {
                                                     <Lightbulb className="w-6 h-6 text-white" />
                                                 </div>
                                             </div>
-                                            <h3 className="text-2xl font-bold text-gray-900 mb-4">The Spark</h3>
+                                            <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('ourStory.timeline.theSpark.title')}</h3>
                                             <p className="text-gray-700 mb-4">
-                                                It started with a simple observation: businesses were drowning in inefficient processes,
-                                                disconnected systems, and manual workflows that consumed valuable time and resources.
+                                                {t('ourStory.timeline.theSpark.description')}
                                             </p>
-                                            <span className="text-purple-600 font-semibold">Early 2023</span>
+                                            <span className="text-purple-600 font-semibold">{t('ourStory.timeline.theSpark.date')}</span>
                                         </div>
                                     </div>
                                     <div className="w-1/2 pl-12"></div>
@@ -112,13 +121,11 @@ const OurStory = () => {
                                                 <Code className="w-6 h-6 text-white" />
                                             </div>
                                         </div>
-                                        <h3 className="text-xl font-bold text-gray-900 mb-3">First Lines of Code</h3>
+                                        <h3 className="text-xl font-bold text-gray-900 mb-3">{t('ourStory.timeline.firstCode.title')}</h3>
                                         <p className="text-gray-700 mb-3 text-sm">
-                                            Our founding team of passionate developers began crafting our first solution -
-                                            a logistics management system that would revolutionize supply chain operations.
-                                            Countless nights were spent perfecting every detail.
+                                            {t('ourStory.timeline.firstCode.description')}
                                         </p>
-                                        <span className="text-blue-600 font-semibold text-sm">Mid 2023</span>
+                                        <span className="text-blue-600 font-semibold text-sm">{t('ourStory.timeline.firstCode.date')}</span>
                                     </div>
                                 </div>
 
@@ -132,13 +139,11 @@ const OurStory = () => {
                                                     <Code className="w-6 h-6 text-white" />
                                                 </div>
                                             </div>
-                                            <h3 className="text-2xl font-bold text-gray-900 mb-4">First Lines of Code</h3>
+                                            <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('ourStory.timeline.firstCode.title')}</h3>
                                             <p className="text-gray-700 mb-4">
-                                                Our founding team of passionate developers began crafting our first solution -
-                                                a logistics management system that would revolutionize supply chain operations.
-                                                Countless nights were spent perfecting every detail.
+                                                {t('ourStory.timeline.firstCode.description')}
                                             </p>
-                                            <span className="text-blue-600 font-semibold">Mid 2023</span>
+                                            <span className="text-blue-600 font-semibold">{t('ourStory.timeline.firstCode.date')}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -163,13 +168,11 @@ const OurStory = () => {
                                                 <Users className="w-6 h-6 text-white" />
                                             </div>
                                         </div>
-                                        <h3 className="text-xl font-bold text-gray-900 mb-3">First Success</h3>
+                                        <h3 className="text-xl font-bold text-gray-900 mb-3">{t('ourStory.timeline.firstSuccess.title')}</h3>
                                         <p className="text-gray-700 mb-3 text-sm">
-                                            Our first client, a mid-sized logistics company, saw a 40% improvement in
-                                            operational efficiency within the first month. This validation fueled our
-                                            determination to expand and refine our offerings.
+                                            {t('ourStory.timeline.firstSuccess.description')}
                                         </p>
-                                        <span className="text-green-600 font-semibold text-sm">Late 2023</span>
+                                        <span className="text-green-600 font-semibold text-sm">{t('ourStory.timeline.firstSuccess.date')}</span>
                                     </div>
                                 </div>
 
@@ -182,13 +185,11 @@ const OurStory = () => {
                                                     <Users className="w-6 h-6 text-white" />
                                                 </div>
                                             </div>
-                                            <h3 className="text-2xl font-bold text-gray-900 mb-4">First Success</h3>
+                                            <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('ourStory.timeline.firstSuccess.title')}</h3>
                                             <p className="text-gray-700 mb-4">
-                                                Our first client, a mid-sized logistics company, saw a 40% improvement in
-                                                operational efficiency within the first month. This validation fueled our
-                                                determination to expand and refine our offerings.
+                                                {t('ourStory.timeline.firstSuccess.description')}
                                             </p>
-                                            <span className="text-green-600 font-semibold">Late 2023</span>
+                                            <span className="text-green-600 font-semibold">{t('ourStory.timeline.firstSuccess.date')}</span>
                                         </div>
                                     </div>
                                     <div className="w-1/2 pl-12"></div>
@@ -214,13 +215,11 @@ const OurStory = () => {
                                                 <Target className="w-6 h-6 text-white" />
                                             </div>
                                         </div>
-                                        <h3 className="text-xl font-bold text-gray-900 mb-3">Growing Portfolio</h3>
+                                        <h3 className="text-xl font-bold text-gray-900 mb-3">{t('ourStory.timeline.growingPortfolio.title')}</h3>
                                         <p className="text-gray-700 mb-3 text-sm">
-                                            Success breeds ambition. We expanded our suite to include ERP systems,
-                                            e-commerce platforms, and POS solutions. Each product was built with
-                                            the same attention to detail and user-centric approach.
+                                            {t('ourStory.timeline.growingPortfolio.description')}
                                         </p>
-                                        <span className="text-orange-600 font-semibold text-sm">Early 2024</span>
+                                        <span className="text-orange-600 font-semibold text-sm">{t('ourStory.timeline.growingPortfolio.date')}</span>
                                     </div>
                                 </div>
 
@@ -234,13 +233,11 @@ const OurStory = () => {
                                                     <Target className="w-6 h-6 text-white" />
                                                 </div>
                                             </div>
-                                            <h3 className="text-2xl font-bold text-gray-900 mb-4">Growing Portfolio</h3>
+                                            <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('ourStory.timeline.growingPortfolio.title')}</h3>
                                             <p className="text-gray-700 mb-4">
-                                                Success breeds ambition. We expanded our suite to include ERP systems,
-                                                e-commerce platforms, and POS solutions. Each product was built with
-                                                the same attention to detail and user-centric approach.
+                                                {t('ourStory.timeline.growingPortfolio.description')}
                                             </p>
-                                            <span className="text-orange-600 font-semibold">Early 2024</span>
+                                            <span className="text-orange-600 font-semibold">{t('ourStory.timeline.growingPortfolio.date')}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -265,13 +262,11 @@ const OurStory = () => {
                                                 <Rocket className="w-6 h-6 text-white" />
                                             </div>
                                         </div>
-                                        <h3 className="text-xl font-bold text-gray-900 mb-3">Today & Beyond</h3>
+                                        <h3 className="text-xl font-bold text-gray-900 mb-3">{t('ourStory.timeline.todayBeyond.title')}</h3>
                                         <p className="text-gray-700 mb-3 text-sm">
-                                            Today, ALMUSANID serves dozens of businesses across various industries.
-                                            We've processed millions of transactions, optimized countless workflows,
-                                            and continue to innovate with emerging technologies like AI and automation.
+                                            {t('ourStory.timeline.todayBeyond.description')}
                                         </p>
-                                        <span className="text-purple-600 font-semibold text-sm">Present</span>
+                                        <span className="text-purple-600 font-semibold text-sm">{t('ourStory.timeline.todayBeyond.date')}</span>
                                     </div>
                                 </div>
 
@@ -284,13 +279,11 @@ const OurStory = () => {
                                                     <Rocket className="w-6 h-6 text-white" />
                                                 </div>
                                             </div>
-                                            <h3 className="text-2xl font-bold text-gray-900 mb-4">Today & Beyond</h3>
+                                            <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('ourStory.timeline.todayBeyond.title')}</h3>
                                             <p className="text-gray-700 mb-4">
-                                                Today, ALMUSANID serves dozens of businesses across various industries.
-                                                We've processed millions of transactions, optimized countless workflows,
-                                                and continue to innovate with emerging technologies like AI and automation.
+                                                {t('ourStory.timeline.todayBeyond.description')}
                                             </p>
-                                            <span className="text-purple-600 font-semibold">Present</span>
+                                            <span className="text-purple-600 font-semibold">{t('ourStory.timeline.todayBeyond.date')}</span>
                                         </div>
                                     </div>
                                     <div className="w-1/2 pl-12"></div>
@@ -315,10 +308,10 @@ const OurStory = () => {
                         viewport={{ once: true }}
                     >
                         <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                            What Drives <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Us</span>
+                            {t('ourStory.values.title')} <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">{t('ourStory.values.titleHighlight')}</span>
                         </h2>
                         <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-                            Our core values shape every decision, every line of code, and every client interaction
+                            {t('ourStory.values.subtitle')}
                         </p>
                     </motion.div>
 
@@ -334,10 +327,9 @@ const OurStory = () => {
                             <div className="bg-gradient-to-r from-blue-500 to-cyan-500 p-4 rounded-full w-16 h-16 mx-auto mb-6">
                                 <Code className="w-8 h-8 text-white" />
                             </div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-4">Innovation First</h3>
+                            <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('ourStory.values.innovation.title')}</h3>
                             <p className="text-gray-700">
-                                We constantly push boundaries, embracing new technologies and methodologies
-                                to deliver cutting-edge solutions that stay ahead of the curve.
+                                {t('ourStory.values.innovation.description')}
                             </p>
                         </motion.div>
 
@@ -352,10 +344,9 @@ const OurStory = () => {
                             <div className="bg-gradient-to-r from-green-500 to-emerald-500 p-4 rounded-full w-16 h-16 mx-auto mb-6">
                                 <Heart className="w-8 h-8 text-white" />
                             </div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-4">Client Success</h3>
+                            <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('ourStory.values.clientSuccess.title')}</h3>
                             <p className="text-gray-700">
-                                Your success is our success. We build lasting partnerships by understanding
-                                your unique challenges and crafting solutions that drive real results.
+                                {t('ourStory.values.clientSuccess.description')}
                             </p>
                         </motion.div>
 
@@ -370,10 +361,9 @@ const OurStory = () => {
                             <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-4 rounded-full w-16 h-16 mx-auto mb-6">
                                 <Target className="w-8 h-8 text-white" />
                             </div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-4">Quality Excellence</h3>
+                            <h3 className="text-2xl font-bold text-gray-900 mb-4">{t('ourStory.values.quality.title')}</h3>
                             <p className="text-gray-700">
-                                Every product we deliver meets the highest standards of quality, security,
-                                and performance. We believe in doing things right the first time.
+                                {t('ourStory.values.quality.description')}
                             </p>
                         </motion.div>
                     </div>
@@ -391,18 +381,17 @@ const OurStory = () => {
                         viewport={{ once: true }}
                     >
                         <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                            Ready to Be Part of <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Our Story?</span>
+                            {t('ourStory.cta.title')} <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">{t('ourStory.cta.titleHighlight')}</span>
                         </h2>
                         <p className="text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
-                            Join the businesses that have already transformed their operations with ALMUSANID.
-                            Let's write the next chapter together.
+                            {t('ourStory.cta.description')}
                         </p>
                         <motion.button
                             className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-4 rounded-full text-lg font-medium transition-all duration-200 hover:shadow-lg hover:shadow-purple-500/25 inline-flex items-center space-x-2"
                             whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(168, 85, 247, 0.4)" }}
                             whileTap={{ scale: 0.95 }}
                         >
-                            <span>Start Your Journey</span>
+                            <span>{t('ourStory.cta.button')}</span>
                             <ArrowRight className="w-5 h-5" />
                         </motion.button>
                     </motion.div>

@@ -2,10 +2,14 @@ import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { ArrowLeft, Upload, User, Mail, Phone, MapPin, FileText, Briefcase } from 'lucide-react'
 import Navbar from '@/components/Navbar'
+import { useLanguage } from '@/contexts/LanguageContext'
+import { useTranslation } from '@/hooks/useTranslation'
 
 const JobApplication = () => {
   const { jobId } = useParams()
   const navigate = useNavigate()
+  const { isRTL } = useLanguage()
+  const { t } = useTranslation()
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -144,12 +148,12 @@ const JobApplication = () => {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center">
         <div className="text-center text-white">
-          <h1 className="text-2xl font-bold mb-4">Job Not Found</h1>
+          <h1 className="text-2xl font-bold mb-4">{t('jobApplication.jobNotFound')}</h1>
           <button
             onClick={() => navigate('/jobs')}
             className="bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-2 rounded-full"
           >
-            Back to Jobs
+            {t('jobApplication.backToJobs')}
           </button>
         </div>
       </div>
@@ -189,16 +193,15 @@ const JobApplication = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h1 className="text-3xl font-bold text-white mb-4">Application Submitted!</h1>
+              <h1 className="text-3xl font-bold text-white mb-4">{t('jobApplication.success.title')}</h1>
               <p className="text-white/70 mb-6">
-                Thank you for applying to the {job.title} position. We've received your application and will review it shortly.
-                Our team will get back to you within 5-7 business days.
+                {t('jobApplication.success.message', { jobTitle: job.title })}
               </p>
               <button
                 onClick={() => navigate('/jobs')}
                 className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-3 rounded-full font-medium transition-all duration-200"
               >
-                Back to Jobs
+                {t('jobApplication.success.backToJobs')}
               </button>
             </div>
           </div>
@@ -216,10 +219,10 @@ const JobApplication = () => {
           {/* Back Button */}
           <button
             onClick={() => navigate('/jobs')}
-            className="flex items-center gap-2 text-white/70 hover:text-white mb-8 transition-colors"
+            className={`flex items-center gap-2 text-white/70 hover:text-white mb-8 transition-colors ${isRTL ? 'flex-row-reverse' : ''}`}
           >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Jobs
+            <ArrowLeft className={`w-4 h-4 ${isRTL ? 'rotate-180' : ''}`} />
+            {t('jobApplication.backToJobs')}
           </button>
 
           <div className="grid lg:grid-cols-3 gap-8">
@@ -243,7 +246,7 @@ const JobApplication = () => {
                 </div>
 
                 <div className="mb-6">
-                  <h3 className="text-white font-semibold mb-3">Required Skills</h3>
+                  <h3 className="text-white font-semibold mb-3">{t('jobApplication.requiredSkills')}</h3>
                   <div className="flex flex-wrap gap-2">
                     {job.skills.map((skill, index) => (
                       <span
@@ -257,12 +260,12 @@ const JobApplication = () => {
                 </div>
 
                 <div className="mb-6">
-                  <h3 className="text-white font-semibold mb-3">Job Description</h3>
+                  <h3 className="text-white font-semibold mb-3">{t('jobApplication.jobDescription')}</h3>
                   <p className="text-white/70 text-sm">{job.description}</p>
                 </div>
 
                 <div>
-                  <h3 className="text-white font-semibold mb-3">Requirements</h3>
+                  <h3 className="text-white font-semibold mb-3">{t('jobApplication.requirements')}</h3>
                   <ul className="space-y-2">
                     {job.requirements.map((req, index) => (
                       <li key={index} className="text-white/70 text-sm flex items-start gap-2">
@@ -278,15 +281,15 @@ const JobApplication = () => {
             {/* Application Form */}
             <div className="lg:col-span-2">
               <div className="backdrop-blur-md bg-black/20 border border-white/10 rounded-2xl p-8 shadow-2xl">
-                <h2 className="text-2xl font-bold text-white mb-6">Apply for this Position</h2>
+                <h2 className="text-2xl font-bold text-white mb-6">{t('jobApplication.applyForPosition')}</h2>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Personal Information */}
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-white/80 text-sm font-medium mb-2">
-                        <User className="w-4 h-4 inline mr-2" />
-                        First Name *
+                      <label className={`block text-white/80 text-sm font-medium mb-2 ${isRTL ? 'text-right' : ''}`}>
+                        <User className={`w-4 h-4 inline ${isRTL ? 'ml-2' : 'mr-2'}`} />
+                        {t('jobApplication.form.firstName')} *
                       </label>
                       <input
                         type="text"
@@ -294,13 +297,13 @@ const JobApplication = () => {
                         value={formData.firstName}
                         onChange={handleInputChange}
                         required
-                        className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all"
-                        placeholder="Enter your first name"
+                        className={`w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all ${isRTL ? 'text-right' : ''}`}
+                        placeholder={t('jobApplication.form.firstNamePlaceholder')}
                       />
                     </div>
                     <div>
-                      <label className="block text-white/80 text-sm font-medium mb-2">
-                        Last Name *
+                      <label className={`block text-white/80 text-sm font-medium mb-2 ${isRTL ? 'text-right' : ''}`}>
+                        {t('jobApplication.form.lastName')} *
                       </label>
                       <input
                         type="text"
@@ -308,17 +311,17 @@ const JobApplication = () => {
                         value={formData.lastName}
                         onChange={handleInputChange}
                         required
-                        className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all"
-                        placeholder="Enter your last name"
+                        className={`w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all ${isRTL ? 'text-right' : ''}`}
+                        placeholder={t('jobApplication.form.lastNamePlaceholder')}
                       />
                     </div>
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-white/80 text-sm font-medium mb-2">
-                        <Mail className="w-4 h-4 inline mr-2" />
-                        Email Address *
+                      <label className={`block text-white/80 text-sm font-medium mb-2 ${isRTL ? 'text-right' : ''}`}>
+                        <Mail className={`w-4 h-4 inline ${isRTL ? 'ml-2' : 'mr-2'}`} />
+                        {t('jobApplication.form.email')} *
                       </label>
                       <input
                         type="email"
@@ -326,14 +329,14 @@ const JobApplication = () => {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all"
-                        placeholder="your.email@example.com"
+                        className={`w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all ${isRTL ? 'text-right' : ''}`}
+                        placeholder={t('jobApplication.form.emailPlaceholder')}
                       />
                     </div>
                     <div>
-                      <label className="block text-white/80 text-sm font-medium mb-2">
-                        <Phone className="w-4 h-4 inline mr-2" />
-                        Phone Number *
+                      <label className={`block text-white/80 text-sm font-medium mb-2 ${isRTL ? 'text-right' : ''}`}>
+                        <Phone className={`w-4 h-4 inline ${isRTL ? 'ml-2' : 'mr-2'}`} />
+                        {t('jobApplication.form.phone')} *
                       </label>
                       <input
                         type="tel"
@@ -341,17 +344,17 @@ const JobApplication = () => {
                         value={formData.phone}
                         onChange={handleInputChange}
                         required
-                        className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all"
-                        placeholder="+971 50 123 4567"
+                        className={`w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all ${isRTL ? 'text-right' : ''}`}
+                        placeholder={t('jobApplication.form.phonePlaceholder')}
                       />
                     </div>
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-white/80 text-sm font-medium mb-2">
-                        <MapPin className="w-4 h-4 inline mr-2" />
-                        Current Location *
+                      <label className={`block text-white/80 text-sm font-medium mb-2 ${isRTL ? 'text-right' : ''}`}>
+                        <MapPin className={`w-4 h-4 inline ${isRTL ? 'ml-2' : 'mr-2'}`} />
+                        {t('jobApplication.form.location')} *
                       </label>
                       <input
                         type="text"
@@ -359,27 +362,27 @@ const JobApplication = () => {
                         value={formData.location}
                         onChange={handleInputChange}
                         required
-                        className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all"
-                        placeholder="Dubai, UAE"
+                        className={`w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all ${isRTL ? 'text-right' : ''}`}
+                        placeholder={t('jobApplication.form.locationPlaceholder')}
                       />
                     </div>
                     <div>
-                      <label className="block text-white/80 text-sm font-medium mb-2">
-                        Years of Experience *
+                      <label className={`block text-white/80 text-sm font-medium mb-2 ${isRTL ? 'text-right' : ''}`}>
+                        {t('jobApplication.form.experience')} *
                       </label>
                       <select
                         name="experience"
                         value={formData.experience}
                         onChange={handleInputChange}
                         required
-                        className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all"
+                        className={`w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all ${isRTL ? 'text-right' : ''}`}
                       >
-                        <option value="">Select experience</option>
-                        <option value="0-1">0-1 years</option>
-                        <option value="1-3">1-3 years</option>
-                        <option value="3-5">3-5 years</option>
-                        <option value="5-8">5-8 years</option>
-                        <option value="8+">8+ years</option>
+                        <option value="">{t('jobApplication.form.experienceOptions.select')}</option>
+                        <option value="0-1">{t('jobApplication.form.experienceOptions.0-1')}</option>
+                        <option value="1-3">{t('jobApplication.form.experienceOptions.1-3')}</option>
+                        <option value="3-5">{t('jobApplication.form.experienceOptions.3-5')}</option>
+                        <option value="5-8">{t('jobApplication.form.experienceOptions.5-8')}</option>
+                        <option value="8+">{t('jobApplication.form.experienceOptions.8+')}</option>
                       </select>
                     </div>
                   </div>
@@ -387,38 +390,38 @@ const JobApplication = () => {
                   {/* Professional Links */}
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-white/80 text-sm font-medium mb-2">
-                        LinkedIn Profile
+                      <label className={`block text-white/80 text-sm font-medium mb-2 ${isRTL ? 'text-right' : ''}`}>
+                        {t('jobApplication.form.linkedIn')}
                       </label>
                       <input
                         type="url"
                         name="linkedIn"
                         value={formData.linkedIn}
                         onChange={handleInputChange}
-                        className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all"
-                        placeholder="https://linkedin.com/in/yourprofile"
+                        className={`w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all ${isRTL ? 'text-right' : ''}`}
+                        placeholder={t('jobApplication.form.linkedInPlaceholder')}
                       />
                     </div>
                     <div>
-                      <label className="block text-white/80 text-sm font-medium mb-2">
-                        Portfolio/Website
+                      <label className={`block text-white/80 text-sm font-medium mb-2 ${isRTL ? 'text-right' : ''}`}>
+                        {t('jobApplication.form.portfolio')}
                       </label>
                       <input
                         type="url"
                         name="portfolio"
                         value={formData.portfolio}
                         onChange={handleInputChange}
-                        className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all"
-                        placeholder="https://yourportfolio.com"
+                        className={`w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all ${isRTL ? 'text-right' : ''}`}
+                        placeholder={t('jobApplication.form.portfolioPlaceholder')}
                       />
                     </div>
                   </div>
 
                   {/* Resume Upload */}
                   <div>
-                    <label className="block text-white/80 text-sm font-medium mb-2">
-                      <FileText className="w-4 h-4 inline mr-2" />
-                      Resume/CV *
+                    <label className={`block text-white/80 text-sm font-medium mb-2 ${isRTL ? 'text-right' : ''}`}>
+                      <FileText className={`w-4 h-4 inline ${isRTL ? 'ml-2' : 'mr-2'}`} />
+                      {t('jobApplication.form.resume')} *
                     </label>
                     <div className="relative">
                       <input
@@ -432,18 +435,18 @@ const JobApplication = () => {
                       />
                       <label
                         htmlFor="resume-upload"
-                        className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white/70 cursor-pointer hover:bg-white/10 transition-all flex items-center gap-2"
+                        className={`w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white/70 cursor-pointer hover:bg-white/10 transition-all flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}
                       >
                         <Upload className="w-4 h-4" />
-                        {formData.resume ? formData.resume.name : 'Choose file (PDF, DOC, DOCX)'}
+                        {formData.resume ? formData.resume.name : t('jobApplication.form.resumePlaceholder')}
                       </label>
                     </div>
                   </div>
 
                   {/* Cover Letter */}
                   <div>
-                    <label className="block text-white/80 text-sm font-medium mb-2">
-                      Cover Letter *
+                    <label className={`block text-white/80 text-sm font-medium mb-2 ${isRTL ? 'text-right' : ''}`}>
+                      {t('jobApplication.form.coverLetter')} *
                     </label>
                     <textarea
                       name="coverLetter"
@@ -451,8 +454,8 @@ const JobApplication = () => {
                       onChange={handleInputChange}
                       required
                       rows={6}
-                      className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all resize-none"
-                      placeholder="Tell us why you're interested in this position and what makes you a great fit..."
+                      className={`w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-purple-500/50 focus:bg-white/10 transition-all resize-none ${isRTL ? 'text-right' : ''}`}
+                      placeholder={t('jobApplication.form.coverLetterPlaceholder')}
                     />
                   </div>
 
@@ -462,7 +465,7 @@ const JobApplication = () => {
                     disabled={isSubmitting}
                     className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 disabled:from-gray-500 disabled:to-gray-600 text-white py-4 rounded-xl font-medium transition-all duration-200 hover:shadow-lg hover:shadow-purple-500/25 disabled:cursor-not-allowed"
                   >
-                    {isSubmitting ? 'Submitting Application...' : 'Submit Application'}
+                    {isSubmitting ? t('jobApplication.form.submitting') : t('jobApplication.form.submit')}
                   </button>
                 </form>
               </div>
