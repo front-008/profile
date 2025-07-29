@@ -14,6 +14,7 @@ import JobApplication from "./pages/JobApplication";
 import Newsroom from "./pages/Newsroom";
 import OurStory from "./pages/OurStory";
 import NotFound from "./pages/NotFound";
+import { ThemeProvider } from "./components/theme/theme-provider";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <LanguageProvider>
       <AccessibilityProvider>
+        <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         <TooltipProvider>
           <SkipLink href="#main-content" />
           <LanguageAnnouncer />
@@ -39,6 +41,7 @@ const App = () => (
             </Routes>
           </BrowserRouter>
         </TooltipProvider>
+        </ThemeProvider>
       </AccessibilityProvider>
     </LanguageProvider>
   </QueryClientProvider>

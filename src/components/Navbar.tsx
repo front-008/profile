@@ -6,6 +6,7 @@ import { useLanguage } from '../contexts/LanguageContext'
 import { useTranslation } from '../hooks/useTranslation'
 import { useKeyboardNavigation } from '../hooks/useKeyboardNavigation'
 import { useAccessibility } from '../components/accessibility/AccessibilityProvider'
+import { ModeToggle } from './theme/mode-toggle'
 
 const Navbar = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -401,6 +402,8 @@ const Navbar = () => {
                                 </motion.button>
                             </motion.div>
 
+                            <ModeToggle />
+                            
                             <motion.button
                                 className="hidden md:block bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-6 py-2 rounded-full text-sm font-medium transition-all duration-200 hover:shadow-lg hover:shadow-purple-500/25"
                                 whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(168, 85, 247, 0.4)" }}
